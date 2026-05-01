@@ -1,21 +1,17 @@
 extends Node2D
 
 const LINES = [
-	"K's back tomorrow.",
-	"Tell him—",
-	"—adequate work.",
-	"The envelope is short.",
-	"Training fee.",
+	"Your brother K called in sick.",
+	"You offered to cover his shift.",
+	"You: But I'm 14. I don't have a license.",
+	"Mr. Gus: Did I ask?",
 	"...",
-	"Don't come back.",
-	"...",
-	"Unless K calls in sick again.",
+	"Mr. Gus: 5 parcels. Town's not far. Mostly.",
 ]
 
-const VOICE_PITCH = 0.55
+const NARRATOR_PITCH = 1.0
 
 var line_index = 0
-var done = false
 var _type_full = ""
 var _type_index = 0
 var _is_typing = false
@@ -25,9 +21,8 @@ var _is_typing = false
 @onready var voice_player = $VoicePlayer
 
 func _ready():
-	$TotalLabel.text = "Total earned: $" + str(GameState.money)
 	type_timer.timeout.connect(_on_type_tick)
-	_start_typing(LINES[0], VOICE_PITCH)
+	_start_typing(LINES[0], NARRATOR_PITCH)
 
 func _start_typing(text: String, pitch: float = 1.0):
 	_type_full = text
@@ -49,8 +44,6 @@ func _on_type_tick():
 		type_timer.stop()
 
 func _unhandled_input(event):
-	if done:
-		return
 	if not event.is_action_pressed("ui_accept"):
 		return
 	if _is_typing:
@@ -60,7 +53,6 @@ func _unhandled_input(event):
 		return
 	line_index += 1
 	if line_index >= LINES.size():
-		done = true
-		dialogue_text.text = "."
+		get_tree().change_scene_to_file("res://boss_scene.tscn")
 	else:
-		_start_typing(LINES[line_index], VOICE_PITCH)
+		_start_typing(LINES[line_index], NARRATOR_PITCH)

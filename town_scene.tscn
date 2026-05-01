@@ -14,35 +14,50 @@ offset_bottom = 180.0
 mouse_filter = 2
 color = Color(0.11373254, 0.43404216, 9.62615e-08, 1)
 
-[node name="NPC1" type="Area2D" parent="." unique_id=2050770579]
+[node name="Momo" type="Area2D" parent="." unique_id=2050770579]
 position = Vector2(80, 80)
 
-[node name="Sprite2D" type="Sprite2D" parent="NPC1" unique_id=1694247446]
+[node name="Sprite2D" type="Sprite2D" parent="Momo" unique_id=1694247446]
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("2_xmp7t")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC1" unique_id=1316550175]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Momo" unique_id=1316550175]
 shape = SubResource("RectangleShape2D_hr5a0")
 
-[node name="NPC2" type="Area2D" parent="." unique_id=145273674]
+[node name="Label" type="Label" parent="Momo" unique_id=2050770580]
+position = Vector2(-12, 12)
+theme_override_font_sizes/font_size = 8
+text = "Momo"
+
+[node name="Pip" type="Area2D" parent="." unique_id=145273674]
 position = Vector2(160, 80)
 
-[node name="Sprite2D" type="Sprite2D" parent="NPC2" unique_id=1156670709]
+[node name="Sprite2D" type="Sprite2D" parent="Pip" unique_id=1156670709]
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("2_xmp7t")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC2" unique_id=1979571161]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pip" unique_id=1979571161]
 shape = SubResource("RectangleShape2D_hr5a0")
 
-[node name="NPC3" type="Area2D" parent="." unique_id=1513374731]
+[node name="Label" type="Label" parent="Pip" unique_id=145273675]
+position = Vector2(-10, 12)
+theme_override_font_sizes/font_size = 8
+text = "Pip"
+
+[node name="Benne" type="Area2D" parent="." unique_id=1513374731]
 position = Vector2(240, 80)
 
-[node name="Sprite2D" type="Sprite2D" parent="NPC3" unique_id=924018523]
+[node name="Sprite2D" type="Sprite2D" parent="Benne" unique_id=924018523]
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("2_xmp7t")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC3" unique_id=1798942787]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Benne" unique_id=1798942787]
 shape = SubResource("RectangleShape2D_hr5a0")
+
+[node name="Label" type="Label" parent="Benne" unique_id=1513374732]
+position = Vector2(-12, 12)
+theme_override_font_sizes/font_size = 8
+text = "Benne"
 
 [node name="DialogueBox" type="Panel" parent="." unique_id=20399667]
 visible = false
@@ -55,8 +70,9 @@ offset_bottom = 170.0
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 48.0
-offset_bottom = 31.0
+offset_right = 292.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 8
 autowrap_mode = 2
 
 [node name="LeaveButton" type="Button" parent="." unique_id=1928967398]
@@ -64,5 +80,13 @@ visible = false
 offset_left = 115.0
 offset_top = 155.0
 offset_right = 215.0
-offset_bottom = 186.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 8
 text = "Leave Town"
+
+[node name="TypeTimer" type="Timer" parent="." unique_id=1444444441]
+wait_time = 0.04
+one_shot = false
+autostart = false
+
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="." unique_id=1444444442]

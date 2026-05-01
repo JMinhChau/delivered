@@ -25,14 +25,23 @@ offset_bottom = 170.0
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 48.0
-offset_bottom = 31.0
+offset_right = 292.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 8
 autowrap_mode = 2
 
 [node name="ContinueHint" type="Label" parent="DialogueBox" unique_id=1707820200]
 layout_mode = 0
 offset_left = 240.0
-offset_top = 32.0
-offset_right = 303.0
-offset_bottom = 55.0
+offset_top = 38.0
+offset_right = 292.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 8
 text = "▼ space"
+
+[node name="TypeTimer" type="Timer" parent="." unique_id=1111111111]
+wait_time = 0.04
+one_shot = false
+autostart = false
+
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="." unique_id=1111111112]

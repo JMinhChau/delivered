@@ -5,16 +5,31 @@
 [node name="EndScene" type="Node2D" unique_id=1097416420]
 script = ExtResource("1_3wcc1")
 
-[node name="Label" type="Label" parent="." unique_id=1714699409]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -9.0
-offset_top = 71.0
-offset_right = 351.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "\"Thanks for the deliveries. See you tomorrow.\""
+[node name="TotalLabel" type="Label" parent="." unique_id=1161394666]
+offset_left = 80.0
+offset_top = 40.0
+offset_right = 240.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 8
+
+[node name="DialogueBox" type="Panel" parent="." unique_id=1387811434]
+offset_left = 10.0
+offset_top = 120.0
+offset_right = 310.0
+offset_bottom = 170.0
+
+[node name="DialogueText" type="Label" parent="DialogueBox" unique_id=220349656]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 292.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 8
+autowrap_mode = 2
+
+[node name="TypeTimer" type="Timer" parent="." unique_id=1333333331]
+wait_time = 0.04
+one_shot = false
+autostart = false
+
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="." unique_id=1333333332]

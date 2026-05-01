@@ -29,9 +29,76 @@ autostart = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1238213548]
 
-[node name="ItemLabel" type="Label" parent="HUD" unique_id=266513528]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 70.0
-offset_bottom = 31.0
-text = "Items: 5"
+[node name="Panel" type="Panel" parent="HUD" unique_id=1470431794]
+offset_top = 165.0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="WrongWayLabel" type="Label" parent="HUD/Panel" unique_id=2100401936]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 120.0
+offset_bottom = 14.0
+theme_override_colors/font_color = Color(0.733002, 2.7554854e-06, 6.738305e-07, 1)
+theme_override_font_sizes/font_size = 8
+text = "◄◄ WRONG WAY ◄◄"
+
+[node name="TimerBar" type="ColorRect" parent="HUD/Panel" unique_id=883672534]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 3.0
+offset_right = 182.0
+offset_bottom = 11.0
+color = Color(0.9, 0.7, 0.1, 1)
+
+[node name="Parcel1" type="Label" parent="HUD/Panel" unique_id=596472470]
+layout_mode = 0
+offset_left = 188.0
+offset_right = 196.0
+offset_bottom = 14.0
+theme_override_font_sizes/font_size = 8
+text = "■"
+
+[node name="Parcel2" type="Label" parent="HUD/Panel" unique_id=596472471]
+layout_mode = 0
+offset_left = 198.0
+offset_right = 206.0
+offset_bottom = 14.0
+theme_override_font_sizes/font_size = 8
+text = "■"
+
+[node name="Parcel3" type="Label" parent="HUD/Panel" unique_id=596472472]
+layout_mode = 0
+offset_left = 208.0
+offset_right = 216.0
+offset_bottom = 14.0
+theme_override_font_sizes/font_size = 8
+text = "■"
+
+[node name="Parcel4" type="Label" parent="HUD/Panel" unique_id=596472473]
+layout_mode = 0
+offset_left = 218.0
+offset_right = 226.0
+offset_bottom = 14.0
+theme_override_font_sizes/font_size = 8
+text = "■"
+
+[node name="Parcel5" type="Label" parent="HUD/Panel" unique_id=596472474]
+layout_mode = 0
+offset_left = 228.0
+offset_right = 236.0
+offset_bottom = 14.0
+theme_override_font_sizes/font_size = 8
+text = "■"
+
+[node name="ChainLabel" type="Label" parent="HUD/Panel" unique_id=614481861]
+visible = false
+layout_mode = 0
+offset_left = 240.0
+offset_right = 318.0
+offset_bottom = 14.0
+theme_override_font_sizes/font_size = 8
+text = "🔥 x0"
+
+[node name="FlashTimer" type="Timer" parent="." unique_id=1021668152]
+wait_time = 0.4
