@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dvmo8pkwi8jsm"]
+
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_6l38s"]
+[ext_resource type="Script" uid="uid://b5oijoj16oluj" path="res://boss_scene.gd" id="1_txays"]
+
+[node name="BossScene" type="Node2D" unique_id=292893951]
+script = ExtResource("1_txays")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1055072572]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.4351641, 0.14383277, 0.19696867, 1)
+
+[node name="BossSprite" type="Sprite2D" parent="." unique_id=1134972484]
+position = Vector2(160, 80)
+texture = ExtResource("1_6l38s")
+
+[node name="DialogueBox" type="Panel" parent="." unique_id=213404356]
+offset_left = 10.0
+offset_top = 120.0
+offset_right = 310.0
+offset_bottom = 170.0
+
+[node name="DialogueText" type="Label" parent="DialogueBox" unique_id=792871445]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 31.0
+autowrap_mode = 2
+
+[node name="ContinueHint" type="Label" parent="DialogueBox" unique_id=1707820200]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 32.0
+offset_right = 303.0
+offset_bottom = 55.0
+text = "▼ space"

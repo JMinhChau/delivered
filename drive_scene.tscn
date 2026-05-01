@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b6c6isqrskng5"]
+
+[ext_resource type="Script" uid="uid://h5i4sisw24j" path="res://drive_scene.gd" id="1_1ptfb"]
+[ext_resource type="Script" uid="uid://dl140tfyikyeu" path="res://truck.gd" id="1_sobfb"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_1ptfb"]
+[ext_resource type="PackedScene" uid="uid://bolyu353r7fpf" path="res://obstacle.tscn" id="2_ssdsl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkoy1"]
+size = Vector2(16, 8)
+
+[node name="DriveScene" type="Node2D" unique_id=1264271364]
+script = ExtResource("1_1ptfb")
+obstacle_scene = ExtResource("2_ssdsl")
+
+[node name="Truck" type="CharacterBody2D" parent="." unique_id=1442796791]
+position = Vector2(60, 90)
+script = ExtResource("1_sobfb")
+
+[node name="Sprite2D" type="Sprite2D" parent="Truck" unique_id=667615519]
+scale = Vector2(0.08, 0.04)
+texture = ExtResource("2_1ptfb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Truck" unique_id=439341461]
+shape = SubResource("RectangleShape2D_gkoy1")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=879820769]
+wait_time = 1.5
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1238213548]
+
+[node name="ItemLabel" type="Label" parent="HUD" unique_id=266513528]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 70.0
+offset_bottom = 31.0
+text = "Items: 5"

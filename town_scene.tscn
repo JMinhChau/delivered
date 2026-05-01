@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dekrsus1idanb"]
+
+[ext_resource type="Script" uid="uid://c8cwaywgf0y52" path="res://town_scene.gd" id="1_cur8n"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_xmp7t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5a0"]
+
+[node name="TownScene" type="Node2D" unique_id=2128547737]
+script = ExtResource("1_cur8n")
+
+[node name="Background" type="ColorRect" parent="." unique_id=92214428]
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+color = Color(0.11373254, 0.43404216, 9.62615e-08, 1)
+
+[node name="NPC1" type="Area2D" parent="." unique_id=2050770579]
+position = Vector2(80, 80)
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC1" unique_id=1694247446]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_xmp7t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC1" unique_id=1316550175]
+shape = SubResource("RectangleShape2D_hr5a0")
+
+[node name="NPC2" type="Area2D" parent="." unique_id=145273674]
+position = Vector2(160, 80)
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC2" unique_id=1156670709]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_xmp7t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC2" unique_id=1979571161]
+shape = SubResource("RectangleShape2D_hr5a0")
+
+[node name="NPC3" type="Area2D" parent="." unique_id=1513374731]
+position = Vector2(240, 80)
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC3" unique_id=924018523]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_xmp7t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC3" unique_id=1798942787]
+shape = SubResource("RectangleShape2D_hr5a0")
+
+[node name="DialogueBox" type="Panel" parent="." unique_id=20399667]
+visible = false
+offset_left = 10.0
+offset_top = 120.0
+offset_right = 310.0
+offset_bottom = 170.0
+
+[node name="DialogueText" type="Label" parent="DialogueBox" unique_id=1987142597]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 31.0
+autowrap_mode = 2
+
+[node name="LeaveButton" type="Button" parent="." unique_id=1928967398]
+visible = false
+offset_left = 115.0
+offset_top = 155.0
+offset_right = 215.0
+offset_bottom = 186.0
+text = "Leave Town"
