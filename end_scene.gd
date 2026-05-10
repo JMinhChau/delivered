@@ -4,48 +4,42 @@ const BOSS_LINES = [
 	{"speaker": "Mr. Gus", "text": "K's back tomorrow."},
 	{"speaker": "Mr. Gus", "text": "Tell him—"},
 	{"speaker": "Mr. Gus", "text": "—adequate work."},
-	{"speaker": "Mr. Gus", "text": "The envelope is short."},
-	{"speaker": "Mr. Gus", "text": "Training fee."},
-	{"speaker": "Mr. Gus", "text": "..."},
+	{"speaker": "Mr. Gus", "text": "Envelope's short. Training fee."},
 	{"speaker": "Mr. Gus", "text": "Don't come back."},
-	{"speaker": "Mr. Gus", "text": "Unless K calls in sick again."},
+	{"speaker": "Mr. Gus", "text": "Unless K's sick again."},
 ]
 
 const ENDING_GOOD = [
 	{"speaker": "",    "text": "K is waiting outside."},
 	{"speaker": "K",   "text": "You're back."},
-	{"speaker": "You", "text": "..."},
-	{"speaker": "K",   "text": "Gus called me. He said I'm getting a raise."},
+	{"speaker": "K",   "text": "Gus called. I got a raise."},
 	{"speaker": "K",   "text": "What did you do?"},
-	{"speaker": "You", "text": "Nothing. Just drove."},
-	{"speaker": "K",   "text": "He said you were 'adequate'. From Gus, that's practically a marriage proposal."},
-	{"speaker": "",    "text": "You walk home. It's a warm evening."},
-	{"speaker": "",    "text": "You never mention the wrong way."}
+	{"speaker": "You", "text": "Nothing."},
+	{"speaker": "K",   "text": "He said 'adequate'. From Gus, that's a proposal."},
+	{"speaker": "",    "text": "You walk home in the warm evening."},
+	{"speaker": "",    "text": "You don't mention the wrong way."}
 ]
 
 const ENDING_NEUTRAL = [
 	{"speaker": "",    "text": "K is waiting outside."},
 	{"speaker": "K",   "text": "You're back."},
-	{"speaker": "You", "text": "..."},
-	{"speaker": "K",   "text": "Gus called. Said I still have a job."},
-	{"speaker": "K",   "text": "Barely."},
+	{"speaker": "K",   "text": "Gus called. I kept the job. Barely."},
 	{"speaker": "You", "text": "I tried."},
 	{"speaker": "K",   "text": "I know. Thanks."},
-	{"speaker": "",    "text": "You walk home. It's a warm evening."},
-	{"speaker": "",    "text": "You never mention the wrong way."}
+	{"speaker": "",    "text": "You walk home in the warm evening."},
+	{"speaker": "",    "text": "You don't mention the wrong way."}
 ]
 
 const ENDING_BAD = [
 	{"speaker": "",    "text": "K is waiting outside."},
 	{"speaker": "K",   "text": "You're back."},
-	{"speaker": "You", "text": "..."},
 	{"speaker": "K",   "text": "Gus called. I'm fired."},
-	{"speaker": "You", "text": "I'm sorry."},
-	{"speaker": "K",   "text": "It's fine. I hated that job anyway."},
-	{"speaker": "K",   "text": "Did you at least have fun?"},
+	{"speaker": "You", "text": "Sorry."},
+	{"speaker": "K",   "text": "It's fine. Hated it anyway."},
+	{"speaker": "K",   "text": "Have fun?"},
 	{"speaker": "You", "text": "No."},
-	{"speaker": "",    "text": "You walk home. It's a warm evening."},
-	{"speaker": "",    "text": "You never mention the wrong way."}
+	{"speaker": "",    "text": "You walk home in the warm evening."},
+	{"speaker": "",    "text": "You don't mention the wrong way."}
 ]
 
 var all_lines = []

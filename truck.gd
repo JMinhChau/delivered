@@ -4,12 +4,10 @@ const LANES = [60, 90, 120]
 const JUMP_HEIGHT = 18.0
 const JUMP_TIME = 0.85
 
-# Learner driver: delay before lane change starts (fades with days)
-const INPUT_DELAY_BY_DAY  = {1: 0.22, 2: 0.16, 3: 0.11, 4: 0.07, 5: 0.04}
-# Tween duration for player-initiated slides
-const SLIDE_DURATION_BY_DAY = {1: 0.38, 2: 0.30, 3: 0.24, 4: 0.18, 5: 0.14}
+# Tween duration for player-initiated slides (sluggish start)
+const SLIDE_DURATION_BY_DAY = {1: 0.60, 2: 0.45, 3: 0.35, 4: 0.25, 5: 0.18}
 # Hole force-shift drift duration (sluggish, uncontrolled)
-const HOLE_DRIFT_BY_DAY   = {1: 0.42, 2: 0.36, 3: 0.30, 4: 0.24, 5: 0.20}
+const HOLE_DRIFT_BY_DAY   = {1: 0.55, 2: 0.48, 3: 0.40, 4: 0.32, 5: 0.25}
 
 var lane = 1
 var items = 5
@@ -17,9 +15,7 @@ var is_tweening = false
 var enabled = true
 var is_airborne = false
 
-# Pending lane change (input delay system)
-var pending_lane: int = -1
-var input_delay_timer: float = 0.0
+var current_tween: Tween
 
 func _ready():
 	position.y = LANES[lane]
@@ -31,34 +27,28 @@ func _process(delta):
 	var target_x = 2.0 if lean else 0.0
 	$Sprite2D.position.x = move_toward($Sprite2D.position.x, target_x, 30.0 * delta)
 
-	# Countdown for pending lane change
-	if pending_lane >= 0:
-		input_delay_timer -= delta
-		if input_delay_timer <= 0.0:
-			var target = pending_lane
-			pending_lane = -1
-			_execute_slide(target)
-
 func _unhandled_input(event):
-	# Block input while tweening OR while a change is already pending
-	if not enabled or is_tweening or pending_lane >= 0:
+	# Allow input even if tweening to prevent "delayed" feeling on subsequent taps
+	if not enabled:
 		return
 	if event.is_action_pressed("ui_up") and lane > 0:
-		pending_lane = lane - 1
-		input_delay_timer = INPUT_DELAY_BY_DAY.get(GameState.day, 0.04)
+		_execute_slide(lane - 1)
 	elif event.is_action_pressed("ui_down") and lane < LANES.size() - 1:
-		pending_lane = lane + 1
-		input_delay_timer = INPUT_DELAY_BY_DAY.get(GameState.day, 0.04)
+		_execute_slide(lane + 1)
 
 func _execute_slide(target_lane: int):
 	lane = target_lane
 	is_tweening = true
-	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "position:y", LANES[lane],
-		SLIDE_DURATION_BY_DAY.get(GameState.day, 0.14))
-	tween.finished.connect(func(): is_tweening = false)
+	
+	if is_instance_valid(current_tween) and current_tween.is_running():
+		current_tween.kill()
+		
+	current_tween = create_tween()
+	current_tween.set_trans(Tween.TRANS_SINE)
+	current_tween.set_ease(Tween.EASE_IN_OUT)
+	current_tween.tween_property(self, "position:y", LANES[lane],
+		SLIDE_DURATION_BY_DAY.get(GameState.day, 0.18))
+	current_tween.finished.connect(func(): is_tweening = false)
 
 func force_lane_shift(direction: int):
 	var next_lane = clamp(lane + direction, 0, LANES.size() - 1)
@@ -67,15 +57,28 @@ func force_lane_shift(direction: int):
 	if next_lane == lane:
 		return
 	lane = next_lane
-	pending_lane = -1  # cancel any queued input
 	is_tweening = true
-	var tween = create_tween()
+	
+	if is_instance_valid(current_tween) and current_tween.is_running():
+		current_tween.kill()
+		
+	current_tween = create_tween()
+	current_tween.set_parallel(true)
+	
 	# Sine ease-in-out: slow start + slow end = feels like inertia/drift
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "position:y", LANES[lane],
-		HOLE_DRIFT_BY_DAY.get(GameState.day, 0.20))
-	tween.finished.connect(func(): is_tweening = false)
+	var duration = HOLE_DRIFT_BY_DAY.get(GameState.day, 0.25)
+	current_tween.tween_property(self, "position:y", LANES[lane], duration)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		
+	# 360 flip
+	var current_rot = $Sprite2D.rotation
+	current_tween.tween_property($Sprite2D, "rotation", current_rot + TAU, duration)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		
+	current_tween.finished.connect(func(): 
+		is_tweening = false
+		$Sprite2D.rotation = fmod($Sprite2D.rotation, TAU)
+	)
 
 func jump():
 	if is_airborne:

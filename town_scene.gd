@@ -11,197 +11,175 @@ const DIALOGUE = {
 	"Momo": {
 		1: {
 			"delivered": [
-				{"speaker": "Momo", "text": "Oh! You're not K."},
-				{"speaker": "Momo", "text": "You have his ears, though. It's very strange."},
-				{"speaker": "Momo", "text": "Tell him I'm making the mushroom soup. He knows the one."},
-				{"speaker": "Momo", "text": "And eat something. You look like a strong wind would take you."},
+				{"speaker": "Momo", "text": "Oh. You're not K."},
+				{"speaker": "Momo", "text": "Same ears, though. Weird."},
+				{"speaker": "Momo", "text": "Tell him I'm making the mushroom soup."},
 			],
 			"missed": [
 				{"speaker": "Momo", "text": "No vegetables."},
-				{"speaker": "Momo", "text": "I had a whole plan. The soup was going to be excellent."},
-				{"speaker": "Momo", "text": "Tell K I saved the broth. He can have it when he's better."},
-				{"speaker": "Momo", "text": "It's fine. I'm fine. Go."},
+				{"speaker": "Momo", "text": "I had a whole plan for soup."},
+				{"speaker": "Momo", "text": "Tell K I saved the broth anyway."},
 			]
 		},
 		2: {
 			"streak": [
 				{"speaker": "Momo", "text": "You're back."},
-				{"speaker": "Momo", "text": "I wasn't sure you would be."},
-				{"speaker": "Momo", "text": "The soup yesterday was very good, by the way."},
-				{"speaker": "Momo", "text": "Tell K that. He'll be annoyed that he missed it."},
+				{"speaker": "Momo", "text": "The soup was good, by the way."},
+				{"speaker": "Momo", "text": "Tell K he missed out."},
 			],
 			"recovery": [
-				{"speaker": "Momo", "text": "Oh! Today you brought them."},
-				{"speaker": "Momo", "text": "Yesterday I made a broth from whatever I had. It was sad."},
-				{"speaker": "Momo", "text": "This is better. Much better."},
-				{"speaker": "Momo", "text": "We don't need to talk about yesterday."},
+				{"speaker": "Momo", "text": "Oh, today you have them."},
+				{"speaker": "Momo", "text": "Yesterday's broth was sad."},
+				{"speaker": "Momo", "text": "This is better."},
 			],
 			"broke": [
-				{"speaker": "Momo", "text": "Yesterday you had them. Today nothing."},
-				{"speaker": "Momo", "text": "I see."},
-				{"speaker": "Momo", "text": "The soup will be different now. Fewer mushrooms."},
-				{"speaker": "Momo", "text": "It's fine. I'm adapting."},
+				{"speaker": "Momo", "text": "Yesterday yes, today no."},
+				{"speaker": "Momo", "text": "Fewer mushrooms, then."},
+				{"speaker": "Momo", "text": "I'll adapt."},
 			],
 			"missed": [
 				{"speaker": "Momo", "text": "Two days."},
-				{"speaker": "Momo", "text": "I've made a different soup."},
-				{"speaker": "Momo", "text": "It's fine. It's a good soup."},
-				{"speaker": "Momo", "text": "Tell K I said it's fine."},
+				{"speaker": "Momo", "text": "Made a different soup."},
+				{"speaker": "Momo", "text": "It's fine."},
 			]
 		},
 		3: {
 			"streak": [
-				{"speaker": "Momo", "text": "Three days."},
-				{"speaker": "Momo", "text": "K never came three days in a row."},
-				{"speaker": "Momo", "text": "I made extra. Don't tell anyone."},
-				{"speaker": "Momo", "text": "Actually — tell whoever you want. I'm proud of the soup."},
+				{"speaker": "Momo", "text": "Three days. Wow."},
+				{"speaker": "Momo", "text": "K never managed three days."},
+				{"speaker": "Momo", "text": "Made extra. Don't tell."},
 			],
 			"recovery": [
-				{"speaker": "Momo", "text": "You came back after yesterday."},
-				{"speaker": "Momo", "text": "I appreciate that."},
-				{"speaker": "Momo", "text": "The soup is still good. I made it anyway, just in case."},
-				{"speaker": "Momo", "text": "I always make it just in case."},
+				{"speaker": "Momo", "text": "You came back."},
+				{"speaker": "Momo", "text": "Soup's still good."},
+				{"speaker": "Momo", "text": "Always make it just in case."},
 			],
 			"broke": [
-				{"speaker": "Momo", "text": "You had them two days and then—"},
-				{"speaker": "Momo", "text": "Okay."},
-				{"speaker": "Momo", "text": "I'm making a simpler soup today."},
-				{"speaker": "Momo", "text": "It's fine. Simpler is sometimes better."},
-				{"speaker": "Momo", "text": "It's not better. But it's fine."},
+				{"speaker": "Momo", "text": "Two days of yes, now no."},
+				{"speaker": "Momo", "text": "Simpler soup today."},
+				{"speaker": "Momo", "text": "Not better. But fine."},
 			],
 			"missed": [
-				{"speaker": "Momo", "text": "Three days. No vegetables."},
+				{"speaker": "Momo", "text": "Three days. No veg."},
 				{"speaker": "Momo", "text": "I've moved on."},
-				{"speaker": "Momo", "text": "There's a soup happening. It just doesn't have what it needs."},
-				{"speaker": "Momo", "text": "Tell K to rest properly."},
+				{"speaker": "Momo", "text": "Tell K to rest."},
 			]
 		},
 		4: {
 			"streak": [
 				{"speaker": "Momo", "text": "Four days."},
-				{"speaker": "Momo", "text": "K never managed four days."},
-				{"speaker": "Momo", "text": "I'm not going to tell him that."},
-				{"speaker": "Momo", "text": "But I'm thinking it."},
+				{"speaker": "Momo", "text": "K never managed four."},
+				{"speaker": "Momo", "text": "I won't tell him."},
+				{"speaker": "Momo", "text": "But I'll think it."},
 			],
 			"delivered": [
 				{"speaker": "Momo", "text": "You came."},
-				{"speaker": "Momo", "text": "K's back tomorrow, I heard."},
-				{"speaker": "Momo", "text": "I'll have to make the regular soup again."},
-				{"speaker": "Momo", "text": "It's a good soup. It's just... you've been getting the better one."},
+				{"speaker": "Momo", "text": "K's back tomorrow."},
+				{"speaker": "Momo", "text": "Back to regular soup soon."},
 			],
 			"missed": [
-				{"speaker": "Momo", "text": "Last chance, I think."},
-				{"speaker": "Momo", "text": "K comes back tomorrow."},
-				{"speaker": "Momo", "text": "I was going to say something meaningful."},
-				{"speaker": "Momo", "text": "No vegetables. I've forgotten what it was."},
+				{"speaker": "Momo", "text": "Last chance, probably."},
+				{"speaker": "Momo", "text": "K's back tomorrow."},
+				{"speaker": "Momo", "text": "I'll save my meaningful words."},
 			]
 		},
 		5: {
 			"delivered": [
-				{"speaker": "Momo", "text": "I figured you'd come."},
-				{"speaker": "Momo", "text": "I made the soup thicker. In your honor."},
-				{"speaker": "Momo", "text": "K came by this morning. He said you were..."},
-				{"speaker": "Momo", "text": "He said 'adequate.' That's very high praise from K."},
+				{"speaker": "Momo", "text": "Made it thicker. For you."},
+				{"speaker": "Momo", "text": "K said you were 'adequate'."},
+				{"speaker": "Momo", "text": "High praise from him."},
 			],
 			"missed": [
-				{"speaker": "Momo", "text": "Last day. No soup for you."},
-				{"speaker": "Momo", "text": "It's fine."},
-				{"speaker": "Momo", "text": "You were good company. Mostly."},
-				{"speaker": "Momo", "text": "Tell K I said... he's lucky."},
+				{"speaker": "Momo", "text": "Last day. No soup."},
+				{"speaker": "Momo", "text": "It's fine. You were okay."},
+				{"speaker": "Momo", "text": "Tell K he's lucky."},
 			]
 		}
 	},
 	"Pip": {
 		1: {
 			"delivered": [
-				{"speaker": "Pip", "text": "Oh perfect. Yes. Thank you."},
-				{"speaker": "Pip", "text": "Wait — how old are you?"},
-				{"speaker": "Pip", "text": "You know what, don't. I don't need to know."},
-				{"speaker": "Pip", "text": "This conversation is not happening. We're good. Bye."},
+				{"speaker": "Pip", "text": "Oh perfect. Yes."},
+				{"speaker": "Pip", "text": "Wait. How old are you?"},
+				{"speaker": "Pip", "text": "Don't answer. We're good. Bye."},
 			],
 			"missed": [
 				{"speaker": "Pip", "text": "Nothing? Same."},
-				{"speaker": "Pip", "text": "I don't even remember what I ordered."},
-				{"speaker": "Pip", "text": "Cool. This also didn't happen."},
-				{"speaker": "Pip", "text": "I respect that about us."},
+				{"speaker": "Pip", "text": "Forgot what I ordered anyway."},
+				{"speaker": "Pip", "text": "This didn't happen."},
 			]
 		},
 		2: {
 			"streak": [
-				{"speaker": "Pip", "text": "You again. Okay."},
+				{"speaker": "Pip", "text": "You again."},
 				{"speaker": "Pip", "text": "Still not asking."},
-				{"speaker": "Pip", "text": "We have a good system going. I like this."},
+				{"speaker": "Pip", "text": "Good system we have."},
 			],
 			"recovery": [
-				{"speaker": "Pip", "text": "Oh! Today you have it."},
-				{"speaker": "Pip", "text": "Yesterday was a whole thing. We don't have to talk about it."},
-				{"speaker": "Pip", "text": "Great. Perfect. You're doing great."},
+				{"speaker": "Pip", "text": "Oh, today you have it."},
+				{"speaker": "Pip", "text": "Yesterday was... whatever."},
+				{"speaker": "Pip", "text": "Perfect. Great."},
 			],
 			"broke": [
-				{"speaker": "Pip", "text": "Yesterday: yes. Today: no."},
+				{"speaker": "Pip", "text": "Yesterday yes, today no."},
 				{"speaker": "Pip", "text": "Pattern noted."},
-				{"speaker": "Pip", "text": "I respect the chaos. Honestly."},
+				{"speaker": "Pip", "text": "I respect the chaos."},
 			],
 			"missed": [
 				{"speaker": "Pip", "text": "Nothing again."},
-				{"speaker": "Pip", "text": "Incredible. Consistent."},
-				{"speaker": "Pip", "text": "You're like the weather. Unreliable but never boring."},
+				{"speaker": "Pip", "text": "Consistently inconsistent."},
+				{"speaker": "Pip", "text": "Like the weather."},
 			]
 		},
 		3: {
 			"streak": [
-				{"speaker": "Pip", "text": "Okay three days. Three days!"},
-				{"speaker": "Pip", "text": "I'm going to say something and I need you to just accept it."},
-				{"speaker": "Pip", "text": "You are kind of really good at this."},
-				{"speaker": "Pip", "text": "Don't make it weird. I'm not making it weird. Bye."},
+				{"speaker": "Pip", "text": "Three days!"},
+				{"speaker": "Pip", "text": "You're actually good at this."},
+				{"speaker": "Pip", "text": "Don't make it weird. Bye."},
 			],
 			"recovery": [
-				{"speaker": "Pip", "text": "You came back after yesterday."},
-				{"speaker": "Pip", "text": "I respect the perseverance."},
-				{"speaker": "Pip", "text": "Also this is exactly what I ordered and it's great. Okay."},
+				{"speaker": "Pip", "text": "You came back."},
+				{"speaker": "Pip", "text": "Respect the hustle."},
+				{"speaker": "Pip", "text": "This is great. Bye."},
 			],
 			"broke": [
-				{"speaker": "Pip", "text": "You had it twice and then—"},
-				{"speaker": "Pip", "text": "No, I get it. Chaos. I contain multitudes. You contain multitudes."},
+				{"speaker": "Pip", "text": "Twice yes, then no."},
+				{"speaker": "Pip", "text": "I contain multitudes too."},
 				{"speaker": "Pip", "text": "We're the same."},
 			],
 			"missed": [
-				{"speaker": "Pip", "text": "Three days. Nothing. Iconic."},
-				{"speaker": "Pip", "text": "I've ordered something else. Don't worry about it."},
-				{"speaker": "Pip", "text": "You're still doing a great job in general, I think."},
+				{"speaker": "Pip", "text": "Three days. Iconic."},
+				{"speaker": "Pip", "text": "Ordered something else."},
+				{"speaker": "Pip", "text": "Don't worry about it."},
 			]
 		},
 		4: {
 			"streak": [
 				{"speaker": "Pip", "text": "FOUR DAYS."},
-				{"speaker": "Pip", "text": "I have to tell you something."},
-				{"speaker": "Pip", "text": "I've started planning my schedule around your arrival."},
-				{"speaker": "Pip", "text": "That's either very good or slightly concerning. I choose good."},
+				{"speaker": "Pip", "text": "I plan my schedule around you now."},
+				{"speaker": "Pip", "text": "Slightly concerning. But okay."},
 			],
 			"delivered": [
-				{"speaker": "Pip", "text": "Oh! Last day probably, right?"},
+				{"speaker": "Pip", "text": "Last day probably?"},
 				{"speaker": "Pip", "text": "K's back tomorrow."},
-				{"speaker": "Pip", "text": "This is sad. I'm not going to say it's sad."},
-				{"speaker": "Pip", "text": "It's a little sad."},
+				{"speaker": "Pip", "text": "A little sad. Just a little."},
 			],
 			"missed": [
-				{"speaker": "Pip", "text": "Nothing. It's fine."},
-				{"speaker": "Pip", "text": "Last day and all that. Whatever."},
-				{"speaker": "Pip", "text": "You were fine. You were great, actually."},
-				{"speaker": "Pip", "text": "Don't tell K I said that."},
+				{"speaker": "Pip", "text": "Nothing. Fine."},
+				{"speaker": "Pip", "text": "You were great, actually."},
+				{"speaker": "Pip", "text": "Don't tell K."},
 			]
 		},
 		5: {
 			"delivered": [
 				{"speaker": "Pip", "text": "Last one. Here we are."},
-				{"speaker": "Pip", "text": "You've been the most competent mysterious delivery person I've ever had."},
-				{"speaker": "Pip", "text": "I had three before you."},
-				{"speaker": "Pip", "text": "All three were K. You were better."},
+				{"speaker": "Pip", "text": "Most competent delivery kid ever."},
+				{"speaker": "Pip", "text": "Way better than K."},
 			],
 			"missed": [
-				{"speaker": "Pip", "text": "Last day. Nothing. Full circle."},
-				{"speaker": "Pip", "text": "Honestly? Poetic."},
-				{"speaker": "Pip", "text": "It's been real. Whatever 'it' was."},
+				{"speaker": "Pip", "text": "Last day. Nothing."},
+				{"speaker": "Pip", "text": "Poetic, honestly."},
+				{"speaker": "Pip", "text": "It's been real."},
 			]
 		}
 	},
@@ -209,73 +187,59 @@ const DIALOGUE = {
 		2: {
 			"delivered": [
 				{"speaker": "Benne", "text": "Finally."},
-				{"speaker": "Benne", "text": "Do you know how long I've been waiting for this flour."},
-				{"speaker": "Benne", "text": "You look twelve. No offense."},
-				{"speaker": "Benne", "text": "It's an observation."},
+				{"speaker": "Benne", "text": "Been waiting on this flour."},
+				{"speaker": "Benne", "text": "You look twelve."},
 			],
 			"missed": [
 				{"speaker": "Benne", "text": "No flour."},
-				{"speaker": "Benne", "text": "..."},
-				{"speaker": "Benne", "text": "The flour situation continues."},
+				{"speaker": "Benne", "text": "The situation continues."},
 			]
 		},
 		3: {
 			"streak": [
 				{"speaker": "Benne", "text": "Second day."},
-				{"speaker": "Benne", "text": "You're consistent. That's rare."},
-				{"speaker": "Benne", "text": "K is not consistent."},
-				{"speaker": "Benne", "text": "Don't tell him I said that. Actually, tell him."},
+				{"speaker": "Benne", "text": "You're consistent."},
+				{"speaker": "Benne", "text": "Tell K I said that."},
 			],
 			"recovery": [
-				{"speaker": "Benne", "text": "Yesterday: nothing. Today: flour."},
-				{"speaker": "Benne", "text": "I've made my peace with the pattern."},
-				{"speaker": "Benne", "text": "Good flour though. Good weight."},
+				{"speaker": "Benne", "text": "Yesterday nothing. Today flour."},
+				{"speaker": "Benne", "text": "Good weight, though."},
 			],
 			"broke": [
-				{"speaker": "Benne", "text": "Yesterday you had it."},
-				{"speaker": "Benne", "text": "Today: nothing."},
-				{"speaker": "Benne", "text": "I baked without it. It was fine."},
-				{"speaker": "Benne", "text": "It was not fine."},
+				{"speaker": "Benne", "text": "Yesterday yes, today no."},
+				{"speaker": "Benne", "text": "Baked without it. Wasn't fine."},
 			],
 			"missed": [
-				{"speaker": "Benne", "text": "Two days. No flour."},
-				{"speaker": "Benne", "text": "I've developed a recipe that doesn't use flour."},
-				{"speaker": "Benne", "text": "It's not bread. It's something else."},
-				{"speaker": "Benne", "text": "I'm calling it 'the situation.'"},
+				{"speaker": "Benne", "text": "Two days."},
+				{"speaker": "Benne", "text": "Making a flourless recipe."},
+				{"speaker": "Benne", "text": "It's not bread."},
 			]
 		},
 		4: {
 			"streak": [
 				{"speaker": "Benne", "text": "Three days."},
-				{"speaker": "Benne", "text": "K never came three days."},
-				{"speaker": "Benne", "text": "I've made actual bread. Good bread."},
-				{"speaker": "Benne", "text": "Here."},
-				{"speaker": "Benne", "text": "Don't tell anyone. I have a reputation."},
+				{"speaker": "Benne", "text": "Made actual bread."},
+				{"speaker": "Benne", "text": "Here. Don't tell anyone."},
 			],
 			"delivered": [
-				{"speaker": "Benne", "text": "Last day, probably."},
+				{"speaker": "Benne", "text": "Last day, maybe."},
 				{"speaker": "Benne", "text": "Take the bread."},
-				{"speaker": "Benne", "text": "Yes I made extra. I'm not explaining myself."},
+				{"speaker": "Benne", "text": "I'm not explaining myself."},
 			],
 			"missed": [
 				{"speaker": "Benne", "text": "No flour."},
-				{"speaker": "Benne", "text": "Last day."},
 				{"speaker": "Benne", "text": "Tell K: adequate."},
-				{"speaker": "Benne", "text": "He'll know what it means."},
 			]
 		},
 		5: {
 			"delivered": [
 				{"speaker": "Benne", "text": "Last one."},
-				{"speaker": "Benne", "text": "I made a loaf. It's in the bag."},
-				{"speaker": "Benne", "text": "For K."},
-				{"speaker": "Benne", "text": "..."},
-				{"speaker": "Benne", "text": "And for you."},
-				{"speaker": "Benne", "text": "Don't make it a whole thing."},
+				{"speaker": "Benne", "text": "Made a loaf. In the bag."},
+				{"speaker": "Benne", "text": "For you."},
+				{"speaker": "Benne", "text": "Don't make it a thing."},
 			],
 			"missed": [
 				{"speaker": "Benne", "text": "No flour. Last day."},
-				{"speaker": "Benne", "text": "It's fine."},
 				{"speaker": "Benne", "text": "You tried. Mostly."},
 			]
 		}
@@ -283,35 +247,27 @@ const DIALOGUE = {
 	"Lou": {
 		4: {
 			"streak": [
-				{"speaker": "Lou", "text": "K mentioned you'd be on time."},
-				{"speaker": "Lou", "text": "He was right."},
+				{"speaker": "Lou", "text": "K said you'd be on time."},
 				{"speaker": "Lou", "text": "Surprising."},
-				{"speaker": "Lou", "text": "Here. Oranges. Don't ask."},
+				{"speaker": "Lou", "text": "Take an orange. Don't ask."},
 			],
 			"delivered": [
-				{"speaker": "Lou", "text": "K said 'probably.'"},
-				{"speaker": "Lou", "text": "About you. 'Probably reliable.'"},
-				{"speaker": "Lou", "text": "He was right."},
-				{"speaker": "Lou", "text": "Probably."},
+				{"speaker": "Lou", "text": "K said 'probably reliable'."},
+				{"speaker": "Lou", "text": "He was right. Probably."},
 			],
 			"missed": [
 				{"speaker": "Lou", "text": "K said you'd be here."},
 				{"speaker": "Lou", "text": "He's wrong sometimes."},
-				{"speaker": "Lou", "text": "The oranges will keep."},
 			]
 		},
 		5: {
 			"delivered": [
-				{"speaker": "Lou", "text": "Last day."},
-				{"speaker": "Lou", "text": "You did good."},
-				{"speaker": "Lou", "text": "K knows."},
-				{"speaker": "Lou", "text": "He won't say it, but he knows."},
+				{"speaker": "Lou", "text": "Last day. You did good."},
+				{"speaker": "Lou", "text": "K knows. Won't say it, but knows."},
 			],
 			"missed": [
-				{"speaker": "Lou", "text": "Last day."},
-				{"speaker": "Lou", "text": "You tried."},
+				{"speaker": "Lou", "text": "Last day. You tried."},
 				{"speaker": "Lou", "text": "That counts for something."},
-				{"speaker": "Lou", "text": "Take an orange."},
 			]
 		}
 	}

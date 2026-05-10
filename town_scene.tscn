@@ -17,7 +17,7 @@ color = Color(0.1, 0.1, 0.15, 1)
 [node name="Momo" type="Area2D" parent="." unique_id=2050770579]
 position = Vector2(70, 80)
 
-[node name="ColorRect" type="ColorRect" parent="Momo"]
+[node name="ColorRect" type="ColorRect" parent="Momo" unique_id=1180208390]
 offset_left = -12.0
 offset_top = -12.0
 offset_right = 12.0
@@ -39,7 +39,7 @@ horizontal_alignment = 1
 [node name="Pip" type="Area2D" parent="." unique_id=145273674]
 position = Vector2(130, 80)
 
-[node name="ColorRect" type="ColorRect" parent="Pip"]
+[node name="ColorRect" type="ColorRect" parent="Pip" unique_id=1439171174]
 offset_left = -12.0
 offset_top = -12.0
 offset_right = 12.0
@@ -61,7 +61,7 @@ horizontal_alignment = 1
 [node name="Benne" type="Area2D" parent="." unique_id=1513374731]
 position = Vector2(190, 80)
 
-[node name="ColorRect" type="ColorRect" parent="Benne"]
+[node name="ColorRect" type="ColorRect" parent="Benne" unique_id=1176262165]
 offset_left = -12.0
 offset_top = -12.0
 offset_right = 12.0
@@ -80,20 +80,20 @@ theme_override_font_sizes/font_size = 8
 text = "B"
 horizontal_alignment = 1
 
-[node name="Lou" type="Area2D" parent="." unique_id=2513374731]
+[node name="Lou" type="Area2D" parent="." unique_id=-1781592565]
 position = Vector2(250, 80)
 
-[node name="ColorRect" type="ColorRect" parent="Lou"]
+[node name="ColorRect" type="ColorRect" parent="Lou" unique_id=1235240459]
 offset_left = -12.0
 offset_top = -12.0
 offset_right = 12.0
 offset_bottom = 12.0
 color = Color(0.58, 0.4, 0.78, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Lou" unique_id=2798942787]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lou" unique_id=-1496024509]
 shape = SubResource("RectangleShape2D_hr5a0")
 
-[node name="Label" type="Label" parent="Lou" unique_id=2513374732]
+[node name="Label" type="Label" parent="Lou" unique_id=-1781592564]
 offset_left = -12.0
 offset_top = 16.0
 offset_right = 12.0

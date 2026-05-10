@@ -19,7 +19,7 @@ var wobble_phase: float   # randomized offset
 func _ready():
 	add_to_group("road_objects")
 	body_entered.connect(_on_body_entered)
-	wobble_freq  = randf_range(0.55, 1.15)
+	wobble_freq  = randf_range(2.8, 4.5)
 	wobble_phase = randf() * TAU
 
 func set_road_speed(value: float):
@@ -27,8 +27,8 @@ func set_road_speed(value: float):
 
 func _process(delta):
 	time_alive += delta
-	# Slow horizontal movement — about 40% of road speed
-	position.x -= road_speed * 0.40 * delta
+	# Slightly faster horizontal movement to feel less floaty
+	position.x -= road_speed * 0.55 * delta
 	# Mid-lane centre with sine wobble across all 3 lanes
 	position.y = 90.0 + sin(time_alive * wobble_freq + wobble_phase) * WOBBLE_AMP
 

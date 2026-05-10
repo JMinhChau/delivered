@@ -18,44 +18,41 @@ const DAY_NPCS = {
 
 const DIALOGUE = {
 	1: [
-		{"speaker": "Mr. Gus", "text": "You. Parcels are in the back."},
-		{"speaker": "Mr. Gus", "text": "Two stops. Don't take the main road."},
+		{"speaker": "Mr. Gus", "text": "You. Parcels in back."},
+		{"speaker": "Mr. Gus", "text": "Two stops. Avoid main road."},
 		{"speaker": "You", "text": "But I'm 14—"},
-		{"speaker": "Mr. Gus", "text": "Did I ask."},
-		{"speaker": "You", "text": "No sir."},
-		{"speaker": "Mr. Gus", "text": "Good. Go."},
+		{"speaker": "Mr. Gus", "text": "Did I ask?"},
+		{"speaker": "Mr. Gus", "text": "Go."},
 	],
 	2: {
 		"good": [
-			{"speaker": "Mr. Gus", "text": "You're back."},
-			{"speaker": "Mr. Gus", "text": "Yesterday was... acceptable."},
-			{"speaker": "Mr. Gus", "text": "Three stops. New face on the list."},
-			{"speaker": "Mr. Gus", "text": "She has opinions. That's your problem now."},
+			{"speaker": "Mr. Gus", "text": "Back."},
+			{"speaker": "Mr. Gus", "text": "Acceptable."},
+			{"speaker": "Mr. Gus", "text": "Three stops. New face."},
+			{"speaker": "Mr. Gus", "text": "She has opinions."},
 		],
 		"bad": [
-			{"speaker": "Mr. Gus", "text": "You're back."},
+			{"speaker": "Mr. Gus", "text": "Back."},
 			{"speaker": "Mr. Gus", "text": "You dropped most of them."},
 			{"speaker": "Mr. Gus", "text": "Try not to drop three."},
-			{"speaker": "Mr. Gus", "text": "...two, at minimum."},
+			{"speaker": "Mr. Gus", "text": "Or two."},
 		],
 	},
 	3: [
-		{"speaker": "Mr. Gus", "text": "K called again."},
-		{"speaker": "Mr. Gus", "text": "Apparently he has 'a thing.'"},
+		{"speaker": "Mr. Gus", "text": "K called."},
+		{"speaker": "Mr. Gus", "text": "He has 'a thing.'"},
 		{"speaker": "Mr. Gus", "text": "Three stops. Same route."},
-		{"speaker": "Mr. Gus", "text": "The road's gotten restless. Watch the middle lane."},
+		{"speaker": "Mr. Gus", "text": "Watch the middle lane."},
 	],
 	4: [
-		{"speaker": "Mr. Gus", "text": "K's back tomorrow, he says."},
-		{"speaker": "Mr. Gus", "text": "So."},
-		{"speaker": "Mr. Gus", "text": "..."},
-		{"speaker": "Mr. Gus", "text": "Four stops. Try not to make it weird."},
+		{"speaker": "Mr. Gus", "text": "K's back tomorrow."},
+		{"speaker": "Mr. Gus", "text": "Four stops."},
+		{"speaker": "Mr. Gus", "text": "Don't make it weird."},
 	],
 	5: [
 		{"speaker": "Mr. Gus", "text": "Last day."},
-		{"speaker": "Mr. Gus", "text": "K comes in at noon."},
-		{"speaker": "Mr. Gus", "text": "Four stops. Same route."},
-		{"speaker": "You", "text": "Is there anything—"},
+		{"speaker": "Mr. Gus", "text": "Four stops."},
+		{"speaker": "You", "text": "Is there—"},
 		{"speaker": "Mr. Gus", "text": "Go."},
 	]
 }
