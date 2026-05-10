@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://gas_pickup_scene1"]
+
+[ext_resource type="Script" path="res://gas_pickup.gd" id="1_gaspk"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_gaspk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gas"]
+radius = 8.0
+
+[node name="GasPickup" type="Area2D" unique_id=9001000001]
+script = ExtResource("1_gaspk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gas")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=9001000002]
+modulate = Color(1, 0.86, 0.2, 1)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("2_gaspk")

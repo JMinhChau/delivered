@@ -1,19 +1,32 @@
 extends Node2D
 
-const LINES = [
-	"K's back tomorrow.",
-	"Tell him—",
-	"—adequate work.",
-	"The envelope is short.",
-	"Training fee.",
-	"...",
-	"Don't come back.",
-	"...",
-	"Unless K calls in sick again.",
+const BOSS_LINES = [
+	{"speaker": "Mr. Gus", "text": "K's back tomorrow."},
+	{"speaker": "Mr. Gus", "text": "Tell him—"},
+	{"speaker": "Mr. Gus", "text": "—adequate work."},
+	{"speaker": "Mr. Gus", "text": "The envelope is short."},
+	{"speaker": "Mr. Gus", "text": "Training fee."},
+	{"speaker": "Mr. Gus", "text": "..."},
+	{"speaker": "Mr. Gus", "text": "Don't come back."},
+	{"speaker": "Mr. Gus", "text": "Unless K calls in sick again."},
 ]
 
-const VOICE_PITCH = 0.55
+const K_LINES = [
+	{"speaker": "",    "text": "K is waiting outside."},
+	{"speaker": "K",   "text": "You're back."},
+	{"speaker": "You", "text": "..."},
+	{"speaker": "K",   "text": "How much?"},
+	{"speaker": "",    "text": "You hand him the envelope."},
+	{"speaker": "K",   "text": "It's short."},
+	{"speaker": "You", "text": "Training fee."},
+	{"speaker": "K",   "text": "..."},
+	{"speaker": "K",   "text": "Yeah. He does that."},
+	{"speaker": "",    "text": "You walk home. It's a warm evening."},
+	{"speaker": "",    "text": "K never asks how the driving was."},
+	{"speaker": "",    "text": "You don't mention the wrong way."},
+]
 
+var all_lines = []
 var line_index = 0
 var done = false
 var _type_full = ""
@@ -21,19 +34,27 @@ var _type_index = 0
 var _is_typing = false
 
 @onready var dialogue_text = $DialogueBox/DialogueText
+@onready var speaker_label = $DialogueBox/SpeakerLabel
 @onready var type_timer = $TypeTimer
 @onready var voice_player = $VoicePlayer
 
 func _ready():
-	$TotalLabel.text = "Total earned: $" + str(GameState.money)
+	$TotalLabel.text = "Total: $" + str(GameState.money)
+	if GameState.total_km > 0 or GameState.best_km > 0:
+		$HighscoreLabel.text = "Km: " + _km_text(GameState.total_km) + " / best " + _km_text(GameState.best_km)
+		$HighscoreLabel.visible = true
+	all_lines = BOSS_LINES + K_LINES
 	type_timer.timeout.connect(_on_type_tick)
-	_start_typing(LINES[0], VOICE_PITCH)
+	_start_typing(all_lines[0])
 
-func _start_typing(text: String, pitch: float = 1.0):
-	_type_full = text
+func _start_typing(line: Dictionary):
+	var spk = line.get("speaker", "")
+	_type_full = line.get("text", "")
 	_type_index = 0
 	_is_typing = true
-	voice_player.pitch_scale = pitch
+	speaker_label.text = spk
+	speaker_label.visible = spk != ""
+	voice_player.pitch_scale = GameState.SPEAKER_PITCH.get(spk, 1.0)
 	dialogue_text.text = ""
 	type_timer.start()
 
@@ -59,8 +80,13 @@ func _unhandled_input(event):
 		type_timer.stop()
 		return
 	line_index += 1
-	if line_index >= LINES.size():
+	if line_index >= all_lines.size():
 		done = true
-		dialogue_text.text = "."
+		dialogue_text.text = ""
+		speaker_label.visible = false
+		$TotalLabel.visible = true
 	else:
-		_start_typing(LINES[line_index], VOICE_PITCH)
+		_start_typing(all_lines[line_index])
+
+func _km_text(km: float) -> String:
+	return "%0.2f km" % km

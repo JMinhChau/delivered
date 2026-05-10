@@ -7,6 +7,12 @@ func _ready():
 	var day_pay = max(20, 50 + delivery_bonus + near_bonus)
 	GameState.money += day_pay
 
+	GameState.total_km += GameState.drive_km
+	GameState.drive_score = int(round(GameState.drive_km * 100.0))
+	if GameState.drive_km > GameState.best_km:
+		GameState.best_km = GameState.drive_km
+	GameState.highscore = int(round(GameState.best_km * 100.0))
+
 	$DayLabel.text = "Day " + str(GameState.day) + " complete."
 	$ItemsLabel.text = "Delivered: " + str(GameState.items_delivered) + " / " + str(max_deliveries)
 	$SalaryLabel.text = "Pay today: $" + str(day_pay)
@@ -18,6 +24,18 @@ func _ready():
 	else:
 		$NearMissLabel.visible = false
 
+	if GameState.gas_collected > 0:
+		$GasLabel.text = "Gas pickups: " + str(GameState.gas_collected) + "  (+" + _km_text(GameState.gas_collected * 0.08) + ")"
+		$GasLabel.visible = true
+	else:
+		$GasLabel.visible = false
+
+	$ScoreLabel.text = "Drive: " + _km_text(GameState.drive_km)
+	if GameState.drive_km > 0 and GameState.drive_km >= GameState.best_km:
+		$HighscoreLabel.text = "Best drive: " + _km_text(GameState.best_km) + " *"
+	else:
+		$HighscoreLabel.text = "Best drive: " + _km_text(GameState.best_km)
+
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):
 		GameState.last_delivered = GameState.items_delivered
@@ -25,8 +43,11 @@ func _unhandled_input(event):
 		GameState.items_delivered = 0
 		GameState.near_miss_chain = 0
 		GameState.near_miss_bonus = 0
-		GameState.drive_mode = "to_town"
+		GameState.gas_collected = 0
 		if GameState.day > 3:
 			get_tree().change_scene_to_file("res://end_scene.tscn")
 		else:
 			get_tree().change_scene_to_file("res://boss_scene.tscn")
+
+func _km_text(km: float) -> String:
+	return "%0.2f km" % km

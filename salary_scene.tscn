@@ -8,14 +8,14 @@ script = ExtResource("1_6id6w")
 [node name="DayLabel" type="Label" parent="." unique_id=624279954]
 offset_left = 80.0
 offset_top = 40.0
-offset_right = 240.0
+offset_right = 270.0
 offset_bottom = 56.0
 theme_override_font_sizes/font_size = 8
 
 [node name="ItemsLabel" type="Label" parent="." unique_id=755079069]
 offset_left = 80.0
 offset_top = 56.0
-offset_right = 240.0
+offset_right = 270.0
 offset_bottom = 72.0
 theme_override_font_sizes/font_size = 8
 
@@ -23,28 +23,50 @@ theme_override_font_sizes/font_size = 8
 visible = false
 offset_left = 80.0
 offset_top = 72.0
-offset_right = 240.0
+offset_right = 270.0
 offset_bottom = 88.0
 theme_override_font_sizes/font_size = 8
 
 [node name="SalaryLabel" type="Label" parent="." unique_id=310423858]
 offset_left = 80.0
 offset_top = 88.0
-offset_right = 240.0
+offset_right = 270.0
 offset_bottom = 104.0
 theme_override_font_sizes/font_size = 8
 
 [node name="TotalLabel" type="Label" parent="." unique_id=1014318223]
 offset_left = 80.0
 offset_top = 104.0
-offset_right = 240.0
+offset_right = 270.0
 offset_bottom = 120.0
+theme_override_font_sizes/font_size = 8
+
+[node name="GasLabel" type="Label" parent="." unique_id=3001000001]
+visible = false
+offset_left = 80.0
+offset_top = 120.0
+offset_right = 270.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 8
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=3001000002]
+offset_left = 80.0
+offset_top = 136.0
+offset_right = 270.0
+offset_bottom = 152.0
+theme_override_font_sizes/font_size = 8
+
+[node name="HighscoreLabel" type="Label" parent="." unique_id=3001000003]
+offset_left = 80.0
+offset_top = 152.0
+offset_right = 270.0
+offset_bottom = 162.0
 theme_override_font_sizes/font_size = 8
 
 [node name="ContinueHint" type="Label" parent="." unique_id=1976997292]
 offset_left = 80.0
 offset_top = 162.0
-offset_right = 240.0
+offset_right = 270.0
 offset_bottom = 178.0
 theme_override_font_sizes/font_size = 8
 text = "▼ space to continue"

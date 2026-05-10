@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://dl140tfyikyeu" path="res://truck.gd" id="1_sobfb"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_1ptfb"]
 [ext_resource type="PackedScene" uid="uid://bolyu353r7fpf" path="res://obstacle.tscn" id="2_ssdsl"]
+[ext_resource type="PackedScene" path="res://gas_pickup.tscn" id="3_gaspk"]
+[ext_resource type="PackedScene" path="res://road_hazard.tscn" id="4_hazard"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkoy1"]
 size = Vector2(16, 8)
@@ -11,6 +13,8 @@ size = Vector2(16, 8)
 [node name="DriveScene" type="Node2D" unique_id=1264271364]
 script = ExtResource("1_1ptfb")
 obstacle_scene = ExtResource("2_ssdsl")
+gas_pickup_scene = ExtResource("3_gaspk")
+road_hazard_scene = ExtResource("4_hazard")
 
 [node name="Truck" type="CharacterBody2D" parent="." unique_id=1442796791]
 position = Vector2(60, 90)
@@ -25,7 +29,7 @@ shape = SubResource("RectangleShape2D_gkoy1")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=879820769]
 wait_time = 1.5
-autostart = true
+autostart = false
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1238213548]
 
@@ -99,6 +103,66 @@ offset_right = 318.0
 offset_bottom = 14.0
 theme_override_font_sizes/font_size = 8
 text = "🔥 x0"
+
+[node name="TownBoard" type="Label" parent="HUD" unique_id=1777666555]
+visible = false
+offset_left = 60.0
+offset_top = 68.0
+offset_right = 260.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 10
+theme_override_colors/font_color = Color(1, 1, 1, 0.9)
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "You're here."
+
+[node name="IgnitionHint" type="Label" parent="HUD" unique_id=1888777666]
+visible = false
+offset_left = 90.0
+offset_top = 78.0
+offset_right = 230.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 9
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+horizontal_alignment = 1
+
+[node name="ScoreHudLabel" type="Label" parent="HUD" unique_id=2033000001]
+offset_left = 240.0
+offset_top = 2.0
+offset_right = 318.0
+offset_bottom = 12.0
+theme_override_font_sizes/font_size = 7
+theme_override_colors/font_color = Color(1, 1, 1, 0.5)
+horizontal_alignment = 2
+
+[node name="IgnitionBarBg" type="ColorRect" parent="HUD" unique_id=2011000001]
+visible = false
+offset_left = 120.0
+offset_top = 82.0
+offset_right = 200.0
+offset_bottom = 90.0
+color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="IgnitionZone" type="ColorRect" parent="HUD" unique_id=2011000002]
+visible = false
+offset_left = 156.0
+offset_top = 82.0
+offset_right = 176.0
+offset_bottom = 90.0
+color = Color(0.3, 0.65, 0.3, 1)
+
+[node name="IgnitionFill" type="ColorRect" parent="HUD" unique_id=2011000003]
+visible = false
+offset_left = 120.0
+offset_top = 82.0
+offset_right = 120.0
+offset_bottom = 90.0
+color = Color(0.88, 0.82, 0.55, 1)
+
+[node name="GasTimer" type="Timer" parent="." unique_id=2022000001]
+wait_time = 6.0
+autostart = false
+one_shot = false
 
 [node name="FlashTimer" type="Timer" parent="." unique_id=1021668152]
 wait_time = 0.4

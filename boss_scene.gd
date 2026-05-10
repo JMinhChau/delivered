@@ -14,31 +14,33 @@ const DAY_NPCS = {
 
 const DIALOGUE = {
 	1: [
-		"You. Parcels are in the back.",
-		"Don't take the main road.",
-		"I didn't say that.",
+		{"speaker": "Mr. Gus", "text": "You. Parcels are in the back."},
+		{"speaker": "Mr. Gus", "text": "Up, down — lanes. Don't embarrass me."},
+		{"speaker": "Mr. Gus", "text": "Two stops. Don't take the main road."},
+		{"speaker": "You", "text": "But I'm 14. I don't have a license."},
+		{"speaker": "Mr. Gus", "text": "Did I ask?"},
 	],
 	2: {
 		"good": [
-			"Back. Fine.",
-			"Yesterday was... acceptable.",
-			"Same deal.",
+			{"speaker": "Mr. Gus", "text": "Back."},
+			{"speaker": "Mr. Gus", "text": "Yesterday was... acceptable."},
+			{"speaker": "Mr. Gus", "text": "Three stops today. New face on the list."},
+			{"speaker": "Mr. Gus", "text": "Third one is new. They have opinions."},
 		],
 		"bad": [
-			"Back.",
-			"Lost most of them, didn't you.",
-			"Try harder.",
+			{"speaker": "Mr. Gus", "text": "Back."},
+			{"speaker": "Mr. Gus", "text": "You dropped most of them."},
+			{"speaker": "Mr. Gus", "text": "Three stops. Don't drop three."},
+			{"speaker": "Mr. Gus", "text": "...two, even."},
 		],
 	},
 	3: [
-		"Last day.",
-		"K owes me one.",
-		"You owe him too. For the opportunity.",
-		"Don't make me regret this.",
+		{"speaker": "Mr. Gus", "text": "K called again."},
+		{"speaker": "Mr. Gus", "text": "Still sick. Three more days, apparently."},
+		{"speaker": "Mr. Gus", "text": "Three stops. Same route."},
+		{"speaker": "Mr. Gus", "text": "Watch the traffic. It's gotten... restless."},
 	],
 }
-
-const VOICE_PITCH = 0.55
 
 var lines = []
 var line_index = 0
@@ -47,6 +49,7 @@ var _type_index = 0
 var _is_typing = false
 
 @onready var dialogue_text = $DialogueBox/DialogueText
+@onready var speaker_label = $DialogueBox/SpeakerLabel
 @onready var type_timer = $TypeTimer
 @onready var voice_player = $VoicePlayer
 
@@ -62,13 +65,31 @@ func _ready():
 		lines = DIALOGUE[GameState.day]
 
 	type_timer.timeout.connect(_on_type_tick)
-	_start_typing(lines[0], VOICE_PITCH)
 
-func _start_typing(text: String, pitch: float = 1.0):
-	_type_full = text
+	if GameState.day > 1:
+		var overlay = $TransitionLayer/Overlay
+		var day_label = $TransitionLayer/DayLabel
+		day_label.text = "Day " + str(GameState.day)
+		await get_tree().create_timer(0.8).timeout
+		var tween = create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(overlay, "color:a", 0.0, 0.6)
+		tween.tween_property(day_label, "modulate:a", 0.0, 0.4)
+		await tween.finished
+		$TransitionLayer.visible = false
+	else:
+		$TransitionLayer.visible = false
+
+	_start_typing(lines[0])
+
+func _start_typing(line: Dictionary):
+	var spk = line.get("speaker", "")
+	_type_full = line.get("text", "")
 	_type_index = 0
 	_is_typing = true
-	voice_player.pitch_scale = pitch
+	speaker_label.text = spk
+	speaker_label.visible = spk != ""
+	voice_player.pitch_scale = GameState.SPEAKER_PITCH.get(spk, 1.0)
 	dialogue_text.text = ""
 	type_timer.start()
 
@@ -95,4 +116,5 @@ func _unhandled_input(event):
 	if line_index >= lines.size():
 		get_tree().change_scene_to_file("res://drive_scene.tscn")
 	else:
-		_start_typing(lines[line_index], VOICE_PITCH)
+		_start_typing(lines[line_index])
+ 

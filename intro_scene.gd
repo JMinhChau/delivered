@@ -1,15 +1,12 @@
 extends Node2D
 
 const LINES = [
-	"Your brother K called in sick.",
-	"You offered to cover his shift.",
-	"You: But I'm 14. I don't have a license.",
-	"Mr. Gus: Did I ask?",
-	"...",
-	"Mr. Gus: 5 parcels. Town's not far. Mostly.",
+	{"speaker": "", "text": "It's the middle of summer."},
+	{"speaker": "", "text": "K called in sick."},
+	{"speaker": "", "text": "You said yes before he finished the sentence."},
+	{"speaker": "", "text": "You've never driven before."},
+	{"speaker": "", "text": "You figured it was the shop."},
 ]
-
-const NARRATOR_PITCH = 1.0
 
 var line_index = 0
 var _type_full = ""
@@ -17,18 +14,22 @@ var _type_index = 0
 var _is_typing = false
 
 @onready var dialogue_text = $DialogueBox/DialogueText
+@onready var speaker_label = $DialogueBox/SpeakerLabel
 @onready var type_timer = $TypeTimer
 @onready var voice_player = $VoicePlayer
 
 func _ready():
 	type_timer.timeout.connect(_on_type_tick)
-	_start_typing(LINES[0], NARRATOR_PITCH)
+	_start_typing(LINES[0])
 
-func _start_typing(text: String, pitch: float = 1.0):
-	_type_full = text
+func _start_typing(line: Dictionary):
+	var spk = line.get("speaker", "")
+	_type_full = line.get("text", "")
 	_type_index = 0
 	_is_typing = true
-	voice_player.pitch_scale = pitch
+	speaker_label.text = spk
+	speaker_label.visible = spk != ""
+	voice_player.pitch_scale = GameState.SPEAKER_PITCH.get(spk, 1.0)
 	dialogue_text.text = ""
 	type_timer.start()
 
@@ -55,4 +56,4 @@ func _unhandled_input(event):
 	if line_index >= LINES.size():
 		get_tree().change_scene_to_file("res://boss_scene.tscn")
 	else:
-		_start_typing(LINES[line_index], NARRATOR_PITCH)
+		_start_typing(LINES[line_index])
