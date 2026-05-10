@@ -58,6 +58,20 @@ func _process(delta):
 func _check_avoid():
 	if abs(position.y - target_y) > 1.0:
 		return
+
+	# Priority 1: flee from ambulances in same lane
+	for amb in get_tree().get_nodes_in_group("ambulance"):
+		if not is_instance_valid(amb):
+			continue
+		var same_lane = abs(amb.position.y - position.y) < 18.0
+		var amb_incoming = amb.position.x > position.x  # ambulance is still approaching
+		if same_lane and amb_incoming:
+			var opts = LANES.filter(func(l): return abs(l - target_y) > 15.0)
+			if not opts.is_empty():
+				target_y = opts[randi() % opts.size()]
+			return  # handled, skip normal avoid
+
+	# Priority 2: normal obstacle avoidance
 	for other in get_tree().get_nodes_in_group("obstacles"):
 		if other == self:
 			continue

@@ -8,6 +8,7 @@ const SPEAKER_PITCH = {
 	"Pip":      0.85,
 	"Benne":    0.65,
 	"K":        1.15,
+	"Lou":      0.92,
 }
 
 const GAS_SCORE_VALUE = 50
@@ -29,3 +30,14 @@ var last_ignition_bonus = 0
 var last_ignition_quality = ""
 var inventory = {}
 var active_npcs = []
+
+# Cross-day delivery memory
+# { "Momo": [true, false, true, ...], "Pip": [...], ... }
+# Each entry = whether that NPC got their delivery on that day they were active
+var npc_delivery_log: Dictionary = {}
+
+# Running total deliveries across all days (for ending branch)
+var total_deliveries: int = 0
+
+# Per-day delivery count snapshot [ d1_count, d2_count, ... ]
+var day_history: Array = []

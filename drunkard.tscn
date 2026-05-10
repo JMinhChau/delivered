@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://drunkard001"]
+
+[ext_resource type="Script" path="res://drunkard.gd" id="1_drunkard"]
+
+[sub_resource type="RectangleShape2D" id="RectShape_drunkard"]
+size = Vector2(20, 8)
+
+[node name="Drunkard" type="Area2D"]
+script = ExtResource("1_drunkard")
+
+[node name="Body" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -4.0
+offset_right = 10.0
+offset_bottom = 4.0
+color = Color(0.88, 0.82, 0.45, 1.0)
+
+[node name="Tilt" type="ColorRect" parent="."]
+offset_left = 5.0
+offset_top = -5.0
+offset_right = 9.0
+offset_bottom = -1.0
+color = Color(0.62, 0.55, 0.25, 1.0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectShape_drunkard")

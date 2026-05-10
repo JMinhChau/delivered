@@ -4,42 +4,60 @@ const DAY_INVENTORY = {
 	1: {"vegetables": 1, "sweets": 1},
 	2: {"vegetables": 1, "sweets": 1, "flour": 1},
 	3: {"vegetables": 2, "sweets": 1, "flour": 2},
+	4: {"vegetables": 2, "sweets": 2, "flour": 2, "oranges": 1},
+	5: {"vegetables": 2, "sweets": 2, "flour": 2, "oranges": 2},
 }
 
 const DAY_NPCS = {
 	1: ["Momo", "Pip"],
 	2: ["Momo", "Pip", "Benne"],
 	3: ["Momo", "Pip", "Benne"],
+	4: ["Momo", "Pip", "Benne", "Lou"],
+	5: ["Momo", "Pip", "Benne", "Lou"],
 }
 
 const DIALOGUE = {
 	1: [
 		{"speaker": "Mr. Gus", "text": "You. Parcels are in the back."},
-		{"speaker": "Mr. Gus", "text": "Up, down — lanes. Don't embarrass me."},
 		{"speaker": "Mr. Gus", "text": "Two stops. Don't take the main road."},
-		{"speaker": "You", "text": "But I'm 14. I don't have a license."},
-		{"speaker": "Mr. Gus", "text": "Did I ask?"},
+		{"speaker": "You", "text": "But I'm 14—"},
+		{"speaker": "Mr. Gus", "text": "Did I ask."},
+		{"speaker": "You", "text": "No sir."},
+		{"speaker": "Mr. Gus", "text": "Good. Go."},
 	],
 	2: {
 		"good": [
-			{"speaker": "Mr. Gus", "text": "Back."},
+			{"speaker": "Mr. Gus", "text": "You're back."},
 			{"speaker": "Mr. Gus", "text": "Yesterday was... acceptable."},
-			{"speaker": "Mr. Gus", "text": "Three stops today. New face on the list."},
-			{"speaker": "Mr. Gus", "text": "Third one is new. They have opinions."},
+			{"speaker": "Mr. Gus", "text": "Three stops. New face on the list."},
+			{"speaker": "Mr. Gus", "text": "She has opinions. That's your problem now."},
 		],
 		"bad": [
-			{"speaker": "Mr. Gus", "text": "Back."},
+			{"speaker": "Mr. Gus", "text": "You're back."},
 			{"speaker": "Mr. Gus", "text": "You dropped most of them."},
-			{"speaker": "Mr. Gus", "text": "Three stops. Don't drop three."},
-			{"speaker": "Mr. Gus", "text": "...two, even."},
+			{"speaker": "Mr. Gus", "text": "Try not to drop three."},
+			{"speaker": "Mr. Gus", "text": "...two, at minimum."},
 		],
 	},
 	3: [
 		{"speaker": "Mr. Gus", "text": "K called again."},
-		{"speaker": "Mr. Gus", "text": "Still sick. Three more days, apparently."},
+		{"speaker": "Mr. Gus", "text": "Apparently he has 'a thing.'"},
 		{"speaker": "Mr. Gus", "text": "Three stops. Same route."},
-		{"speaker": "Mr. Gus", "text": "Watch the traffic. It's gotten... restless."},
+		{"speaker": "Mr. Gus", "text": "The road's gotten restless. Watch the middle lane."},
 	],
+	4: [
+		{"speaker": "Mr. Gus", "text": "K's back tomorrow, he says."},
+		{"speaker": "Mr. Gus", "text": "So."},
+		{"speaker": "Mr. Gus", "text": "..."},
+		{"speaker": "Mr. Gus", "text": "Four stops. Try not to make it weird."},
+	],
+	5: [
+		{"speaker": "Mr. Gus", "text": "Last day."},
+		{"speaker": "Mr. Gus", "text": "K comes in at noon."},
+		{"speaker": "Mr. Gus", "text": "Four stops. Same route."},
+		{"speaker": "You", "text": "Is there anything—"},
+		{"speaker": "Mr. Gus", "text": "Go."},
+	]
 }
 
 var lines = []
@@ -117,4 +135,3 @@ func _unhandled_input(event):
 		get_tree().change_scene_to_file("res://drive_scene.tscn")
 	else:
 		_start_typing(lines[line_index])
- 

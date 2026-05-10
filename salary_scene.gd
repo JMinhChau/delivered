@@ -44,7 +44,9 @@ func _unhandled_input(event):
 		GameState.near_miss_chain = 0
 		GameState.near_miss_bonus = 0
 		GameState.gas_collected = 0
-		if GameState.day > 3:
+		
+		# 5 day limit
+		if GameState.day > 5:
 			get_tree().change_scene_to_file("res://end_scene.tscn")
 		else:
 			get_tree().change_scene_to_file("res://boss_scene.tscn")

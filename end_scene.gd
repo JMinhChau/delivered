@@ -11,19 +11,41 @@ const BOSS_LINES = [
 	{"speaker": "Mr. Gus", "text": "Unless K calls in sick again."},
 ]
 
-const K_LINES = [
+const ENDING_GOOD = [
 	{"speaker": "",    "text": "K is waiting outside."},
 	{"speaker": "K",   "text": "You're back."},
 	{"speaker": "You", "text": "..."},
-	{"speaker": "K",   "text": "How much?"},
-	{"speaker": "",    "text": "You hand him the envelope."},
-	{"speaker": "K",   "text": "It's short."},
-	{"speaker": "You", "text": "Training fee."},
-	{"speaker": "K",   "text": "..."},
-	{"speaker": "K",   "text": "Yeah. He does that."},
+	{"speaker": "K",   "text": "Gus called me. He said I'm getting a raise."},
+	{"speaker": "K",   "text": "What did you do?"},
+	{"speaker": "You", "text": "Nothing. Just drove."},
+	{"speaker": "K",   "text": "He said you were 'adequate'. From Gus, that's practically a marriage proposal."},
 	{"speaker": "",    "text": "You walk home. It's a warm evening."},
-	{"speaker": "",    "text": "K never asks how the driving was."},
-	{"speaker": "",    "text": "You don't mention the wrong way."},
+	{"speaker": "",    "text": "You never mention the wrong way."}
+]
+
+const ENDING_NEUTRAL = [
+	{"speaker": "",    "text": "K is waiting outside."},
+	{"speaker": "K",   "text": "You're back."},
+	{"speaker": "You", "text": "..."},
+	{"speaker": "K",   "text": "Gus called. Said I still have a job."},
+	{"speaker": "K",   "text": "Barely."},
+	{"speaker": "You", "text": "I tried."},
+	{"speaker": "K",   "text": "I know. Thanks."},
+	{"speaker": "",    "text": "You walk home. It's a warm evening."},
+	{"speaker": "",    "text": "You never mention the wrong way."}
+]
+
+const ENDING_BAD = [
+	{"speaker": "",    "text": "K is waiting outside."},
+	{"speaker": "K",   "text": "You're back."},
+	{"speaker": "You", "text": "..."},
+	{"speaker": "K",   "text": "Gus called. I'm fired."},
+	{"speaker": "You", "text": "I'm sorry."},
+	{"speaker": "K",   "text": "It's fine. I hated that job anyway."},
+	{"speaker": "K",   "text": "Did you at least have fun?"},
+	{"speaker": "You", "text": "No."},
+	{"speaker": "",    "text": "You walk home. It's a warm evening."},
+	{"speaker": "",    "text": "You never mention the wrong way."}
 ]
 
 var all_lines = []
@@ -43,7 +65,14 @@ func _ready():
 	if GameState.total_km > 0 or GameState.best_km > 0:
 		$HighscoreLabel.text = "Km: " + _km_text(GameState.total_km) + " / best " + _km_text(GameState.best_km)
 		$HighscoreLabel.visible = true
-	all_lines = BOSS_LINES + K_LINES
+	
+	var ending_lines = ENDING_NEUTRAL
+	if GameState.total_deliveries >= 12:
+		ending_lines = ENDING_GOOD
+	elif GameState.total_deliveries < 7:
+		ending_lines = ENDING_BAD
+		
+	all_lines = BOSS_LINES + ending_lines
 	type_timer.timeout.connect(_on_type_tick)
 	_start_typing(all_lines[0])
 

@@ -3,28 +3,42 @@ extends Node2D
 @export var obstacle_scene: PackedScene
 @export var gas_pickup_scene: PackedScene
 @export var road_hazard_scene: PackedScene
+@export var ambulance_scene: PackedScene
+@export var drunkard_scene: PackedScene
 
 const LANES = [60, 90, 120]
 const TIMER_BAR_MAX_WIDTH = 60.0
-const TIME_BASE_BY_DAY     = {1: 24.0, 2: 18.0, 3: 14.0}
-const TIME_MAX_BY_DAY      = {1: 28.0, 2: 22.0, 3: 18.0}
-const CAR_SPAWN_WAIT_BY_DAY = {1: 2.6, 2: 2.35, 3: 2.15}
-const GAS_INTERVAL_BY_DAY  = {1: 6.0,  2: 5.0,  3: 4.0}
-const SWERVE_CHANCE        = {1: 0.0,  2: 0.20, 3: 0.35}
-const ROAD_SPEED_START_BY_DAY = {1: 58.0, 2: 66.0, 3: 74.0}
-const ROAD_SPEED_END_BY_DAY   = {1: 88.0, 2: 122.0, 3: 150.0}
-const ROAD_SPEED_RAMP_BY_DAY  = {1: 28.0, 2: 22.0, 3: 18.0}
+
+# 5-day constants
+const TIME_BASE_BY_DAY     = {1: 24.0, 2: 18.0, 3: 14.0, 4: 12.0, 5: 10.0}
+const TIME_MAX_BY_DAY      = {1: 28.0, 2: 22.0, 3: 18.0, 4: 16.0, 5: 14.0}
+const CAR_SPAWN_WAIT_BY_DAY = {1: 2.6, 2: 2.35, 3: 2.15, 4: 1.9, 5: 1.7}
+const GAS_INTERVAL_BY_DAY  = {1: 6.0,  2: 5.0,  3: 4.0,  4: 3.5, 5: 3.0}
+const SWERVE_CHANCE        = {1: 0.0,  2: 0.20, 3: 0.35, 4: 0.50, 5: 0.65}
+const ROAD_SPEED_START_BY_DAY = {1: 58.0, 2: 66.0, 3: 74.0, 4: 82.0, 5: 90.0}
+const ROAD_SPEED_END_BY_DAY   = {1: 88.0, 2: 122.0, 3: 150.0, 4: 175.0, 5: 200.0}
+const ROAD_SPEED_RAMP_BY_DAY  = {1: 28.0, 2: 22.0, 3: 18.0, 4: 15.0, 5: 12.0}
+const HAZARD_COOLDOWN_BY_DAY = {2: Vector2(3.5, 5.0), 3: Vector2(2.7, 4.2), 4: Vector2(2.2, 3.5), 5: Vector2(1.8, 2.8)}
+
+const IGNITION_THRESHOLD_BY_DAY = {1: 0.70, 2: 0.62, 3: 0.55, 4: 0.50, 5: 0.45}
+const IGNITION_TAP_GAIN_BY_DAY = {1: 0.18, 2: 0.22, 3: 0.26, 4: 0.30, 5: 0.35}
+const IGNITION_DECAY_BY_DAY = {1: 0.55, 2: 0.42, 3: 0.32, 4: 0.25, 5: 0.20}
+const IGNITION_HOLD_TIME_BY_DAY = {1: 0.75, 2: 0.60, 3: 0.45, 4: 0.35, 5: 0.25}
+
 const KM_PER_SPEED_SECOND = 0.0009
 const GAS_KM_BONUS = 0.08
 const NEAR_MISS_KM_BONUS = 0.025
-const HAZARD_COOLDOWN_BY_DAY = {2: Vector2(3.5, 5.0), 3: Vector2(2.7, 4.2)}
-const IGNITION_THRESHOLD_BY_DAY = {1: 0.70, 2: 0.62, 3: 0.55}
-const IGNITION_TAP_GAIN_BY_DAY = {1: 0.18, 2: 0.22, 3: 0.26}
-const IGNITION_DECAY_BY_DAY = {1: 0.55, 2: 0.42, 3: 0.32}
-const IGNITION_HOLD_TIME_BY_DAY = {1: 0.75, 2: 0.60, 3: 0.45}
 const IGNITION_BONUS_MIN = 1
 const IGNITION_BONUS_MAX = 4
 const IGNITION_BAR_MAX = 80.0
+
+const DAY_PALETTE = {
+	1: { "sky": Color(0.45, 0.75, 0.95), "grass": Color(0.35, 0.72, 0.38), "prop": Color(0.95, 0.80, 0.35) },
+	2: { "sky": Color(0.42, 0.68, 0.90), "grass": Color(0.38, 0.68, 0.35), "prop": Color(0.78, 0.60, 0.28) },
+	3: { "sky": Color(0.55, 0.62, 0.85), "grass": Color(0.32, 0.60, 0.30), "prop": Color(0.68, 0.45, 0.22) },
+	4: { "sky": Color(0.80, 0.60, 0.42), "grass": Color(0.30, 0.55, 0.28), "prop": Color(0.55, 0.35, 0.18) },
+	5: { "sky": Color(0.92, 0.76, 0.48), "grass": Color(0.28, 0.50, 0.26), "prop": Color(0.85, 0.70, 0.40) }
+}
 
 var time_remaining: float
 var run_time_max: float
@@ -39,11 +53,14 @@ var ignition_ready = false
 var ending = false
 var hold_power = 0.0
 var ignition_hold_time = 0.0
+var ambulance_spawned = false
+var drunkard_spawned = false
 
 var road_dashes = []
 var background_props = []
 var road_layer: Node2D
 var interior_layer: Node2D
+var speed_lines_layer: Node2D
 var tap_player: AudioStreamPlayer
 var hold_player: AudioStreamPlayer
 var start_player: AudioStreamPlayer
@@ -65,6 +82,8 @@ var start_player: AudioStreamPlayer
 @onready var ignition_zone = $HUD/IgnitionZone
 @onready var ignition_fill = $HUD/IgnitionFill
 @onready var score_hud_label = $HUD/ScoreHudLabel
+@onready var thought_label = $HUD/ThoughtLabel
+@onready var hud_layer = $HUD
 
 func _ready():
 	_build_road_layers()
@@ -109,6 +128,9 @@ func _ready():
 	get_tree().create_timer(0.15).timeout.connect(func(): ignition_ready = true)
 
 	_update_hud()
+	
+	if is_instance_valid(thought_label):
+		thought_label.modulate.a = 0
 
 func _build_road_layers():
 	road_layer = Node2D.new()
@@ -116,11 +138,13 @@ func _build_road_layers():
 	road_layer.z_index = -20
 	add_child(road_layer)
 	move_child(road_layer, 0)
+	
+	var pal = DAY_PALETTE.get(GameState.day, DAY_PALETTE[1])
 
-	var sky = _make_rect(Vector2(0, 0), Vector2(320, 56), Color(0.45, 0.75, 0.95, 1.0), "Sky")
-	var grass = _make_rect(Vector2(0, 56), Vector2(320, 88), Color(0.35, 0.72, 0.38, 1.0), "SummerGrass")
+	var sky = _make_rect(Vector2(0, 0), Vector2(320, 56), pal["sky"], "Sky")
+	var grass = _make_rect(Vector2(0, 56), Vector2(320, 88), pal["grass"], "SummerGrass")
 	var road = _make_rect(Vector2(0, 48), Vector2(320, 96), Color(0.30, 0.31, 0.34, 1.0), "Road")
-	var lower_grass = _make_rect(Vector2(0, 144), Vector2(320, 36), Color(0.28, 0.62, 0.31, 1.0), "LowerGrass")
+	var lower_grass = _make_rect(Vector2(0, 144), Vector2(320, 36), pal["grass"].darkened(0.15), "LowerGrass")
 	road_layer.add_child(sky)
 	road_layer.add_child(grass)
 	road_layer.add_child(road)
@@ -132,10 +156,20 @@ func _build_road_layers():
 			road_layer.add_child(dash)
 			road_dashes.append(dash)
 
-	for i in range(7):
-		var prop = _make_rect(Vector2(i * 58, 38 + (i % 2) * 8), Vector2(10, 14), Color(0.95, 0.80, 0.35, 1.0), "SummerProp")
+	var prop_count = 7 + (GameState.day - 1) * 2
+	for i in range(prop_count):
+		var prop = _make_rect(Vector2(i * 58, 38 + (i % 2) * 8), Vector2(10, 14), pal["prop"], "SummerProp")
 		road_layer.add_child(prop)
 		background_props.append(prop)
+
+	# Speed Lines
+	speed_lines_layer = Node2D.new()
+	speed_lines_layer.z_index = -5
+	speed_lines_layer.modulate.a = 0.0
+	for i in range(6):
+		var sl = _make_rect(Vector2(randf_range(10, 200), randf_range(50, 140)), Vector2(randf_range(30, 60), 2), Color(1, 1, 1, 0.4), "SpeedLine")
+		speed_lines_layer.add_child(sl)
+	add_child(speed_lines_layer)
 
 	interior_layer = Node2D.new()
 	interior_layer.name = "InteriorLayer"
@@ -213,6 +247,12 @@ func _finish_ignition(bonus: int, quality: String):
 	$FlashTimer.start(0.4)
 	$SpawnTimer.start()
 	$GasTimer.start()
+	
+	if GameState.day == 1:
+		_show_thought(["Okay. Three lanes. Don't panic.", "K does this every day. How."].pick_random())
+
+var _has_shown_low_time = false
+var _has_shown_max_speed = false
 
 func _process(delta):
 	if igniting:
@@ -230,6 +270,10 @@ func _process(delta):
 	time_remaining -= delta
 	time_remaining = max(0.0, time_remaining)
 	_update_timer_bar()
+	
+	if time_remaining > 0 and time_remaining < 5.0 and int(time_remaining) == 4 and not _has_shown_low_time:
+		_show_thought(["Please please please—", "Come on come on—"].pick_random())
+		_has_shown_low_time = true
 
 	hazard_cooldown -= delta
 	if GameState.day >= 2 and hazard_cooldown <= 0.0:
@@ -264,6 +308,15 @@ func _update_road_speed():
 	var ramp_time = ROAD_SPEED_RAMP_BY_DAY.get(GameState.day, 18.0)
 	speed_progress = clamp(drive_elapsed / ramp_time, 0.0, 1.0)
 	road_speed = lerp(start_speed, end_speed, speed_progress)
+	
+	if road_speed > 115.0:
+		var alpha = remap(road_speed, 115.0, 150.0, 0.0, 0.45)
+		speed_lines_layer.modulate.a = clamp(alpha, 0.0, 0.45)
+		if speed_progress >= 0.99 and not _has_shown_max_speed:
+			_show_thought(["...okay. Okay. THIS is fun.", "If K could see me right now."].pick_random())
+			_has_shown_max_speed = true
+	else:
+		speed_lines_layer.modulate.a = 0.0
 
 func _scroll_road_visuals(delta):
 	for dash in road_dashes:
@@ -274,6 +327,11 @@ func _scroll_road_visuals(delta):
 		prop.position.x -= road_speed * 0.28 * delta
 		if prop.position.x < -16.0:
 			prop.position.x += 372.0
+	for sl in speed_lines_layer.get_children():
+		sl.position.x -= road_speed * 1.5 * delta
+		if sl.position.x < -60.0:
+			sl.position.x += 380.0
+			sl.position.y = randf_range(50, 140)
 
 func _update_road_objects_speed():
 	for node in get_tree().get_nodes_in_group("road_objects"):
@@ -346,6 +404,32 @@ func _km_text(km: float) -> String:
 	return "%0.2f km" % km
 
 func _spawn_obstacle():
+	var active_ambs = get_tree().get_nodes_in_group("ambulance")
+	ambulance_spawned = active_ambs.size() > 0
+	var active_drunks = get_tree().get_nodes_in_group("drunkard")
+	drunkard_spawned = active_drunks.size() > 0
+
+	var r = randf()
+	if GameState.day >= 3 and not ambulance_spawned and r < 0.15 and ambulance_scene != null:
+		var amb = ambulance_scene.instantiate()
+		amb.position = Vector2(340, LANES[randi() % 3])
+		amb.truck_ref = truck
+		amb.hit.connect(_on_hit)
+		amb.near_miss.connect(_on_near_miss)
+		add_child(amb)
+		_show_thought(["Oh no. Oh no oh no—", "MOVE. PLEASE. MOVING."].pick_random())
+		return
+
+	if GameState.day >= 2 and not drunkard_spawned and r < 0.25 and drunkard_scene != null:
+		var drunk = drunkard_scene.instantiate()
+		drunk.position = Vector2(340, 90.0)
+		drunk.truck_ref = truck
+		drunk.hit.connect(_on_hit)
+		drunk.near_miss.connect(_on_near_miss)
+		add_child(drunk)
+		_show_thought(["What is that car DOING.", "Sir. SIR."].pick_random())
+		return
+
 	var obs = obstacle_scene.instantiate()
 	var types = ["car", "scooter", "van"]
 	var t = types[randi() % 3]
@@ -407,9 +491,11 @@ func _spawn_hazard(kind: String, x_pos: float, lane_idx: int):
 func _on_gas_collected():
 	GameState.gas_collected += 1
 	time_remaining += 4.0
+	run_time_max = max(run_time_max, time_remaining)
 	GameState.drive_km += GAS_KM_BONUS
 	_check_best_km()
 	_update_hud()
+	_show_thought(["Time!", "Gas! Or time? Both!"].pick_random())
 
 func _check_best_km():
 	if GameState.drive_km > GameState.best_km:
@@ -438,25 +524,60 @@ func _unhandled_input(event):
 		return
 
 func _on_hit():
+	# Screen Shake
+	var tw = create_tween()
+	tw.set_trans(Tween.TRANS_SINE)
+	for i in range(4):
+		var offset = Vector2(randf_range(-3, 3), randf_range(-3, 3))
+		tw.tween_property(hud_layer, "offset", offset, 0.05)
+	tw.tween_property(hud_layer, "offset", Vector2.ZERO, 0.05)
+
 	var keys = GameState.inventory.keys().filter(func(k): return GameState.inventory[k] > 0)
 	if not keys.is_empty():
 		var lost = keys[randi() % keys.size()]
 		GameState.inventory[lost] -= 1
 		if GameState.inventory[lost] <= 0:
 			GameState.inventory.erase(lost)
+		_show_thought(["Sorry. Sorry. Sorry.", "That's fine. That's totally fine."].pick_random())
+	else:
+		_show_thought("...K is never going to know about this.")
+
 	GameState.items = _total_items()
 	GameState.near_miss_chain = 0
 	_update_hud()
 
 func _on_near_miss():
 	GameState.near_miss_chain += 1
+	var chain = float(GameState.near_miss_chain)
 	var multiplier = 2.0 if Input.is_action_pressed("lean") else 1.0
-	var bonus = int(10 * GameState.near_miss_chain * multiplier)
-	var km_bonus = NEAR_MISS_KM_BONUS * float(GameState.near_miss_chain) * multiplier
+
+	var bonus = int(10 * chain * multiplier)
+	var km_bonus = NEAR_MISS_KM_BONUS * chain * multiplier
 	GameState.near_miss_bonus += bonus
 	GameState.drive_km += km_bonus
+	
+	# NEW: time bonus extending run
+	var time_bonus = 0.4 * chain * multiplier
+	time_remaining += time_bonus
+	run_time_max = max(run_time_max, time_remaining)
+
 	_check_best_km()
 	_update_hud()
+	
+	if GameState.near_miss_chain == 1:
+		_show_thought(["Was that... intentional?", "K makes this look easy."].pick_random())
+	elif GameState.near_miss_chain == 3:
+		_show_thought(["Oh I'm DOING it.", "Okay okay okay—"].pick_random())
+	elif GameState.near_miss_chain == 5:
+		_show_thought(["I might be a natural.", "Don't think about it. Don't think."].pick_random())
+
+func _show_thought(text: String):
+	if thought_label == null: return
+	thought_label.text = text
+	var tw = create_tween()
+	tw.tween_property(thought_label, "modulate:a", 1.0, 0.3)
+	tw.tween_interval(1.2)
+	tw.tween_property(thought_label, "modulate:a", 0.0, 0.5)
 
 func _total_items() -> int:
 	if GameState.inventory.is_empty():
