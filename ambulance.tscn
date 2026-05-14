@@ -1,26 +1,37 @@
 [gd_scene format=3 uid="uid://mbulance001"]
 
-[ext_resource type="Script" path="res://ambulance.gd" id="1_ambulance"]
+[ext_resource type="Script" uid="uid://coqul6gpdli2j" path="res://ambulance.gd" id="1_ambulance"]
+[ext_resource type="Texture2D" uid="uid://57lshc1j3eel" path="res://art/drive/ambulance.png" id="2_udx00"]
 
 [sub_resource type="RectangleShape2D" id="RectShape_ambulance"]
-size = Vector2(18, 8)
+size = Vector2(25.75, 6.25)
 
-[node name="Ambulance" type="Area2D"]
+[node name="Ambulance" type="Area2D" unique_id=1839712290]
+scale = Vector2(4, 4)
 script = ExtResource("1_ambulance")
 
-[node name="Body" type="ColorRect" parent="."]
+[node name="Fallback" type="Node2D" parent="." unique_id=113277069]
+visible = false
+
+[node name="Body" type="ColorRect" parent="Fallback" unique_id=1889351499]
 offset_left = -9.0
 offset_top = -4.0
 offset_right = 9.0
 offset_bottom = 4.0
-color = Color(0.94, 0.94, 0.94, 1.0)
+color = Color(0.94, 0.94, 0.94, 1)
 
-[node name="SirenRect" type="ColorRect" parent="."]
+[node name="SirenRect" type="ColorRect" parent="Fallback" unique_id=1957394045]
 offset_left = -4.0
 offset_top = -5.0
 offset_right = 4.0
 offset_bottom = -1.0
-color = Color(1.0, 0.12, 0.12, 1.0)
+color = Color(1, 0.12, 0.12, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1113829515]
+position = Vector2(-0.25, -1)
+scale = Vector2(-0.033, 0.033)
+texture = ExtResource("2_udx00")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1202975119]
+position = Vector2(-0.125, -1)
 shape = SubResource("RectShape_ambulance")

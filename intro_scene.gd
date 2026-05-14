@@ -1,11 +1,12 @@
 extends Node2D
 
 const LINES = [
-	{"speaker": "", "text": "It's the middle of summer."},
-	{"speaker": "", "text": "K called in sick."},
-	{"speaker": "", "text": "You said yes before he finished the sentence."},
-	{"speaker": "", "text": "You've never driven before."},
-	{"speaker": "", "text": "You figured it was the shop."},
+	{"speaker": "", "text": "Your brother K has a delivery job."},
+	{"speaker": "", "text": "He does it every day. Rain or shine. Whatever."},
+	{"speaker": "", "text": "This morning he texted you: 'cover for me? ur basically me'"},
+	{"speaker": "", "text": "You are not basically him."},
+	{"speaker": "", "text": "Also you have never driven a truck."},
+	{"speaker": "", "text": "Details."},
 ]
 
 var line_index = 0

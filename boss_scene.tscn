@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_6l38s"]
 [ext_resource type="Script" uid="uid://b5oijoj16oluj" path="res://boss_scene.gd" id="1_txays"]
+[ext_resource type="Script" path="res://sprite_loader.gd" id="2_loader"]
 
 [node name="BossScene" type="Node2D" unique_id=292893951]
 script = ExtResource("1_txays")
@@ -11,9 +12,20 @@ offset_right = 320.0
 offset_bottom = 180.0
 color = Color(0.4351641, 0.14383277, 0.19696867, 1)
 
+[node name="BackgroundSprite" type="Sprite2D" parent="."]
+centered = false
+script = ExtResource("2_loader")
+texture_path = "res://art/story/boss_background.png"
+target_size = Vector2(320, 180)
+fallback_node_path = NodePath("../Background")
+keep_existing_if_missing = false
+
 [node name="BossSprite" type="Sprite2D" parent="." unique_id=1134972484]
 position = Vector2(160, 80)
 texture = ExtResource("1_6l38s")
+script = ExtResource("2_loader")
+texture_path = "res://art/story/mr_gus.png"
+target_size = Vector2(72, 72)
 
 [node name="DialogueBox" type="Panel" parent="." unique_id=213404356]
 offset_left = 10.0

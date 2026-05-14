@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dekrsus1idanb"]
 
 [ext_resource type="Script" uid="uid://c8cwaywgf0y52" path="res://town_scene.gd" id="1_cur8n"]
+[ext_resource type="Script" path="res://sprite_loader.gd" id="2_loader"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5a0"]
 size = Vector2(24, 24)
@@ -14,6 +15,14 @@ offset_bottom = 180.0
 mouse_filter = 2
 color = Color(0.1, 0.1, 0.15, 1)
 
+[node name="BackgroundSprite" type="Sprite2D" parent="."]
+centered = false
+script = ExtResource("2_loader")
+texture_path = "res://art/town/background.png"
+target_size = Vector2(320, 180)
+fallback_node_path = NodePath("../Background")
+keep_existing_if_missing = false
+
 [node name="Momo" type="Area2D" parent="." unique_id=2050770579]
 position = Vector2(70, 80)
 
@@ -23,6 +32,13 @@ offset_top = -12.0
 offset_right = 12.0
 offset_bottom = 12.0
 color = Color(0.95, 0.6, 0.25, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Momo"]
+script = ExtResource("2_loader")
+texture_path = "res://art/town/momo.png"
+target_size = Vector2(28, 28)
+fallback_node_path = NodePath("../ColorRect")
+keep_existing_if_missing = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Momo" unique_id=1316550175]
 shape = SubResource("RectangleShape2D_hr5a0")
@@ -46,6 +62,13 @@ offset_right = 12.0
 offset_bottom = 12.0
 color = Color(0.3, 0.75, 0.72, 1)
 
+[node name="Sprite2D" type="Sprite2D" parent="Pip"]
+script = ExtResource("2_loader")
+texture_path = "res://art/town/pip.png"
+target_size = Vector2(28, 28)
+fallback_node_path = NodePath("../ColorRect")
+keep_existing_if_missing = false
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pip" unique_id=1979571161]
 shape = SubResource("RectangleShape2D_hr5a0")
 
@@ -67,6 +90,13 @@ offset_top = -12.0
 offset_right = 12.0
 offset_bottom = 12.0
 color = Color(0.55, 0.38, 0.22, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Benne"]
+script = ExtResource("2_loader")
+texture_path = "res://art/town/benne.png"
+target_size = Vector2(28, 28)
+fallback_node_path = NodePath("../ColorRect")
+keep_existing_if_missing = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Benne" unique_id=1798942787]
 shape = SubResource("RectangleShape2D_hr5a0")
@@ -90,6 +120,13 @@ offset_right = 12.0
 offset_bottom = 12.0
 color = Color(0.58, 0.4, 0.78, 1)
 
+[node name="Sprite2D" type="Sprite2D" parent="Lou"]
+script = ExtResource("2_loader")
+texture_path = "res://art/town/lou.png"
+target_size = Vector2(28, 28)
+fallback_node_path = NodePath("../ColorRect")
+keep_existing_if_missing = false
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lou" unique_id=-1496024509]
 shape = SubResource("RectangleShape2D_hr5a0")
 
@@ -102,6 +139,36 @@ theme_override_font_sizes/font_size = 8
 text = "L"
 horizontal_alignment = 1
 
+[node name="DialogueFace" type="ColorRect" parent="." unique_id=2222000001]
+visible = false
+z_index = 4
+offset_left = 18.0
+offset_top = 124.0
+offset_right = 58.0
+offset_bottom = 164.0
+color = Color(0.95, 0.6, 0.25, 1)
+
+[node name="FaceLabel" type="Label" parent="DialogueFace" unique_id=2222000002]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.08, 0.06, 0.05, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "M"
+
+[node name="DialogueFaceSprite" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(38, 144)
+script = ExtResource("2_loader")
+texture_path = "res://art/town/momo_face.png"
+target_size = Vector2(40, 40)
+fallback_node_path = NodePath("../DialogueFace")
+keep_existing_if_missing = false
+preserve_initial_visibility = true
+
 [node name="DialogueBox" type="Panel" parent="." unique_id=20399667]
 visible = false
 offset_left = 10.0
@@ -111,7 +178,7 @@ offset_bottom = 170.0
 
 [node name="SpeakerLabel" type="Label" parent="DialogueBox" unique_id=1987142596]
 layout_mode = 0
-offset_left = 8.0
+offset_left = 56.0
 offset_top = 1.0
 offset_right = 150.0
 offset_bottom = 10.0
@@ -120,12 +187,21 @@ theme_override_font_sizes/font_size = 7
 
 [node name="DialogueText" type="Label" parent="DialogueBox" unique_id=1987142597]
 layout_mode = 0
-offset_left = 8.0
+offset_left = 56.0
 offset_top = 11.0
 offset_right = 292.0
 offset_bottom = 48.0
 theme_override_font_sizes/font_size = 8
 autowrap_mode = 2
+
+[node name="ContinueHint" type="Label" parent="DialogueBox" unique_id=1987142598]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 38.0
+offset_right = 292.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 8
+text = "▼ space"
 
 [node name="LeaveButton" type="Button" parent="." unique_id=1928967398]
 visible = false

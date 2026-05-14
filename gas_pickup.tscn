@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://gas_pickup.gd" id="1_gaspk"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_gaspk"]
+[ext_resource type="Script" path="res://sprite_loader.gd" id="3_loader"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gas"]
 radius = 8.0
@@ -16,3 +17,6 @@ shape = SubResource("CircleShape2D_gas")
 modulate = Color(1, 0.86, 0.2, 1)
 scale = Vector2(0.045, 0.045)
 texture = ExtResource("2_gaspk")
+script = ExtResource("3_loader")
+texture_path = "res://art/drive/gas_pickup.png"
+target_size = Vector2(16, 16)

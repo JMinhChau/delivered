@@ -1,25 +1,81 @@
 [gd_scene format=3 uid="uid://cnn42b56f2iw6"]
 
 [ext_resource type="Script" uid="uid://dmyxgj67gy832" path="res://end_scene.gd" id="1_3wcc1"]
+[ext_resource type="Script" path="res://sprite_loader.gd" id="2_loader"]
 
 [node name="EndScene" type="Node2D" unique_id=1097416420]
 script = ExtResource("1_3wcc1")
 
-[node name="TotalLabel" type="Label" parent="." unique_id=1161394666]
-offset_left = 80.0
-offset_top = 40.0
-offset_right = 285.0
+[node name="Background" type="ColorRect" parent="." unique_id=5001000001]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.12, 0.10, 0.14, 1)
+
+[node name="BackgroundSprite" type="Sprite2D" parent="."]
+centered = false
+script = ExtResource("2_loader")
+texture_path = "res://art/story/end_background.png"
+target_size = Vector2(320, 180)
+fallback_node_path = NodePath("../Background")
+keep_existing_if_missing = false
+
+[node name="EndingFace" type="ColorRect" parent="." unique_id=5001000002]
+offset_left = 132.0
+offset_top = 58.0
+offset_right = 188.0
+offset_bottom = 114.0
+color = Color(0.48, 0.16, 0.22, 1)
+
+[node name="FaceLabel" type="Label" parent="EndingFace" unique_id=5001000003]
+layout_mode = 0
+offset_right = 56.0
 offset_bottom = 56.0
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(0.08, 0.06, 0.05, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "G"
+
+[node name="EndingFaceSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(160, 86)
+script = ExtResource("2_loader")
+texture_path = "res://art/story/k_face.png"
+target_size = Vector2(56, 56)
+fallback_node_path = NodePath("../EndingFace")
+keep_existing_if_missing = false
+preserve_initial_visibility = true
+
+[node name="TotalLabel" type="Label" parent="." unique_id=1161394666]
+visible = false
+offset_left = 55.0
+offset_top = 118.0
+offset_right = 265.0
+offset_bottom = 132.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 1
 
 [node name="HighscoreLabel" type="Label" parent="." unique_id=4001000001]
 visible = false
-offset_left = 80.0
-offset_top = 56.0
-offset_right = 285.0
-offset_bottom = 72.0
+offset_left = 55.0
+offset_top = 134.0
+offset_right = 265.0
+offset_bottom = 148.0
 theme_override_font_sizes/font_size = 8
 theme_override_colors/font_color = Color(1.0, 0.85, 0.3, 1)
+horizontal_alignment = 1
+
+[node name="FinalTitle" type="Label" parent="." unique_id=5001000006]
+visible = false
+offset_left = 55.0
+offset_top = 24.0
+offset_right = 265.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "SUMMER COMPLETE"
+horizontal_alignment = 1
 
 [node name="DialogueBox" type="Panel" parent="." unique_id=1387811434]
 offset_left = 10.0
@@ -51,3 +107,11 @@ one_shot = false
 autostart = false
 
 [node name="VoicePlayer" type="AudioStreamPlayer" parent="." unique_id=1333333332]
+
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=5001000004]
+layer = 20
+
+[node name="Overlay" type="ColorRect" parent="TransitionLayer" unique_id=5001000005]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)

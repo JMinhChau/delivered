@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dbbl8iypy01fw"]
+
+[ext_resource type="Script" uid="uid://dwuxwam7hj74s" path="res://menu_scene.gd" id="1_menu"]
+[ext_resource type="Script" uid="uid://ci1mjb6skd1e5" path="res://sprite_loader.gd" id="2_loader"]
+
+[node name="MenuScene" type="Node2D" unique_id=778190284]
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="." unique_id=251199970]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.4, 0.7, 0.88, 1)
+
+[node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=1265941576]
+visible = false
+centered = false
+script = ExtResource("2_loader")
+texture_path = "res://art/menu/background.png"
+target_size = Vector2(320, 180)
+fallback_node_path = NodePath("../Background")
+keep_existing_if_missing = false
+
+[node name="RoadStrip" type="ColorRect" parent="." unique_id=107164151]
+offset_top = 102.0
+offset_right = 320.0
+offset_bottom = 136.0
+color = Color(0.26, 0.27, 0.3, 1)
+
+[node name="RoadStripSprite" type="Sprite2D" parent="." unique_id=2038402360]
+visible = false
+position = Vector2(0, 102)
+centered = false
+script = ExtResource("2_loader")
+texture_path = "res://art/menu/road_strip.png"
+target_size = Vector2(320, 34)
+fallback_node_path = NodePath("../RoadStrip")
+keep_existing_if_missing = false
+
+[node name="Title" type="Label" parent="." unique_id=170499558]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 288.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0.08, 0.07, 0.05, 1)
+theme_override_font_sizes/font_size = 18
+text = "DELIVERED"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="." unique_id=523574372]
+offset_left = 110.0
+offset_top = 78.0
+offset_right = 210.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 9
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="." unique_id=1584085189]
+offset_left = 110.0
+offset_top = 108.0
+offset_right = 210.0
+offset_bottom = 130.0
+theme_override_font_sizes/font_size = 9
+text = "Quit"

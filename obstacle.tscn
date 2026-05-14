@@ -1,17 +1,30 @@
 [gd_scene format=3 uid="uid://bolyu353r7fpf"]
 
 [ext_resource type="Script" uid="uid://x5oeshm13p7g" path="res://obstacle.gd" id="1_aubd6"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_sl1jc"]
+[ext_resource type="Texture2D" uid="uid://d4k15oqru52pw" path="res://art/drive/obstacle.png" id="2_aubd6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qaun2"]
-size = Vector2(10, 10)
+size = Vector2(22.5, 6.25)
 
 [node name="Obstacle" type="Area2D" unique_id=686277915]
+scale = Vector2(2, 2)
 script = ExtResource("1_aubd6")
 
+[node name="Fallback" type="Node2D" parent="." unique_id=580912528]
+
+[node name="Body" type="ColorRect" parent="Fallback" unique_id=1811388035]
+visible = false
+offset_left = -9.0
+offset_top = -5.0
+offset_right = 9.0
+offset_bottom = 5.0
+color = Color(0.75, 0.82, 0.95, 1)
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=560698755]
-scale = Vector2(0.06, 0.06)
-texture = ExtResource("1_sl1jc")
+position = Vector2(0, 0.5)
+scale = Vector2(-0.033, 0.033)
+texture = ExtResource("2_aubd6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1646542598]
+position = Vector2(-0.24999976, 0.8874999)
 shape = SubResource("RectangleShape2D_qaun2")

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://road_hazard_scene1"]
 
 [ext_resource type="Script" path="res://road_hazard.gd" id="1_hazard"]
+[ext_resource type="Script" path="res://sprite_loader.gd" id="2_loader"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hazard"]
 size = Vector2(18, 14)
@@ -11,7 +12,9 @@ script = ExtResource("1_hazard")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hazard")
 
-[node name="Visual" type="ColorRect" parent="."]
+[node name="Fallback" type="Node2D" parent="."]
+
+[node name="Visual" type="ColorRect" parent="Fallback"]
 offset_left = -9.0
 offset_top = -7.0
 offset_right = 9.0
@@ -19,7 +22,7 @@ offset_bottom = 7.0
 mouse_filter = 2
 color = Color(0.05, 0.04, 0.04, 1)
 
-[node name="Symbol" type="Label" parent="."]
+[node name="Symbol" type="Label" parent="Fallback"]
 offset_left = -8.0
 offset_top = -8.0
 offset_right = 8.0
@@ -29,3 +32,10 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 horizontal_alignment = 1
 vertical_alignment = 1
 text = "O"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+script = ExtResource("2_loader")
+texture_path = "res://art/drive/hole.png"
+target_size = Vector2(18, 14)
+fallback_node_path = NodePath("../Fallback")
+keep_existing_if_missing = false

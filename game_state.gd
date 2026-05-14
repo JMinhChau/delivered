@@ -41,3 +41,25 @@ var total_deliveries: int = 0
 
 # Per-day delivery count snapshot [ d1_count, d2_count, ... ]
 var day_history: Array = []
+
+func reset_run():
+	day = 1
+	items = 5
+	money = 100
+	items_delivered = 0
+	last_delivered = 0
+	near_miss_chain = 0
+	near_miss_bonus = 0
+	gas_collected = 0
+	drive_score = 0
+	highscore = 0
+	drive_km = 0.0
+	total_km = 0.0
+	best_km = 0.0
+	last_ignition_bonus = 0
+	last_ignition_quality = ""
+	inventory = {}
+	active_npcs = []
+	npc_delivery_log = {}
+	total_deliveries = 0
+	day_history = []

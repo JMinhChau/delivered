@@ -3,9 +3,9 @@ extends Node2D
 const DAY_INVENTORY = {
 	1: {"vegetables": 1, "sweets": 1},
 	2: {"vegetables": 1, "sweets": 1, "flour": 1},
-	3: {"vegetables": 2, "sweets": 1, "flour": 2},
-	4: {"vegetables": 2, "sweets": 2, "flour": 2, "oranges": 1},
-	5: {"vegetables": 2, "sweets": 2, "flour": 2, "oranges": 2},
+	3: {"vegetables": 1, "sweets": 1, "flour": 1},
+	4: {"vegetables": 1, "sweets": 1, "flour": 1, "oranges": 1},
+	5: {"vegetables": 1, "sweets": 1, "flour": 1, "oranges": 1},
 }
 
 const DAY_NPCS = {
@@ -18,41 +18,53 @@ const DAY_NPCS = {
 
 const DIALOGUE = {
 	1: [
-		{"speaker": "Mr. Gus", "text": "You. Parcels in back."},
-		{"speaker": "Mr. Gus", "text": "Two stops. Avoid main road."},
-		{"speaker": "You", "text": "But I'm 14—"},
-		{"speaker": "Mr. Gus", "text": "Did I ask?"},
+		{"speaker": "Mr. Gus", "text": "You."},
+		{"speaker": "Mr. Gus", "text": "You're K's sibling?"},
+		{"speaker": "Mr. Gus", "text": "You have his ears."},
+		{"speaker": "You", "text": "I'm only—"},
+		{"speaker": "Mr. Gus", "text": "Parcels are in the back. Two stops."},
+		{"speaker": "Mr. Gus", "text": "Don't crash the truck."},
 		{"speaker": "Mr. Gus", "text": "Go."},
 	],
 	2: {
 		"good": [
 			{"speaker": "Mr. Gus", "text": "Back."},
-			{"speaker": "Mr. Gus", "text": "Acceptable."},
-			{"speaker": "Mr. Gus", "text": "Three stops. New face."},
-			{"speaker": "Mr. Gus", "text": "She has opinions."},
+			{"speaker": "Mr. Gus", "text": "Nobody's called to complain."},
+			{"speaker": "Mr. Gus", "text": "Three stops today. One's new."},
+			{"speaker": "Mr. Gus", "text": "Benne. She has opinions."},
+			{"speaker": "Mr. Gus", "text": "Don't engage."},
 		],
 		"bad": [
 			{"speaker": "Mr. Gus", "text": "Back."},
-			{"speaker": "Mr. Gus", "text": "You dropped most of them."},
-			{"speaker": "Mr. Gus", "text": "Try not to drop three."},
-			{"speaker": "Mr. Gus", "text": "Or two."},
+			{"speaker": "Mr. Gus", "text": "How many parcels did you drop."},
+			{"speaker": "You", "text": "Some of them—"},
+			{"speaker": "Mr. Gus", "text": "Three stops today."},
+			{"speaker": "Mr. Gus", "text": "Deliver at least one."},
 		],
 	},
 	3: [
-		{"speaker": "Mr. Gus", "text": "K called."},
-		{"speaker": "Mr. Gus", "text": "He has 'a thing.'"},
-		{"speaker": "Mr. Gus", "text": "Three stops. Same route."},
-		{"speaker": "Mr. Gus", "text": "Watch the middle lane."},
+		{"speaker": "Mr. Gus", "text": "K called again."},
+		{"speaker": "Mr. Gus", "text": "'Still sick.'"},
+		{"speaker": "Mr. Gus", "text": "He's not sick."},
+		{"speaker": "Mr. Gus", "text": "Same three stops."},
+		{"speaker": "Mr. Gus", "text": "There's a hole in the road now."},
+		{"speaker": "Mr. Gus", "text": "It was there before you."},
+		{"speaker": "Mr. Gus", "text": "Go."},
 	],
 	4: [
-		{"speaker": "Mr. Gus", "text": "K's back tomorrow."},
-		{"speaker": "Mr. Gus", "text": "Four stops."},
-		{"speaker": "Mr. Gus", "text": "Don't make it weird."},
+		{"speaker": "Mr. Gus", "text": "K says he'll be back tomorrow."},
+		{"speaker": "Mr. Gus", "text": "Four stops. One new: Lou."},
+		{"speaker": "Mr. Gus", "text": "Lou and K have history."},
+		{"speaker": "Mr. Gus", "text": "Unrelated: don't mention K."},
+		{"speaker": "Mr. Gus", "text": "Go."},
 	],
 	5: [
 		{"speaker": "Mr. Gus", "text": "Last day."},
 		{"speaker": "Mr. Gus", "text": "Four stops."},
-		{"speaker": "You", "text": "Is there—"},
+		{"speaker": "You", "text": "Did K say anything about—"},
+		{"speaker": "Mr. Gus", "text": "I texted him."},
+		{"speaker": "Mr. Gus", "text": "Told him you were adequate."},
+		{"speaker": "You", "text": "Is that good?"},
 		{"speaker": "Mr. Gus", "text": "Go."},
 	]
 }
